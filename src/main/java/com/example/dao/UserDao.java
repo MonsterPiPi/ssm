@@ -9,4 +9,7 @@ import com.example.pojo.User; /**
  */
 public interface UserDao {
     boolean save(User user);
+
+
+    boolean findByEmailAndPassword(String email, String password);
 }

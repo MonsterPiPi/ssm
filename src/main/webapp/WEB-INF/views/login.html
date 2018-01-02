@@ -2,38 +2,167 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
     <title>Title</title>
+    <link rel="stylesheet" href="//mdui-aliyun.cdn.w3cbus.com/source/dist/css/mdui.min.css"/>
 </head>
-<body>
+<body  class=" mdui-color-grey-200">
 
-    <input id="email" type="email" >
 
-    <input id="password" type="password" >
 
-    <a href="#"   onclick="test()" >Login in</a>
+
+
+<div class="mdui-container">
+    <br><br>
+        <div class="mdui-card ">
+        <div class="mdui-col-xs-12">
+            <div class="mdui-col-xs-12 mdui-col-sm-7">
+
+
+                <div class="mdui-tab" mdui-tab>
+                    <a href="#example1-tab1" class="mdui-ripple">One</a>
+                    <a href="#example1-tab2" class="mdui-ripple">Two</a>
+                    <a href="#example1-tab3" class="mdui-ripple">Three</a>
+                </div>
+                <div id="example1-tab1" class="mdui-p-a-2">
+                    <div class="mdui-typo-display-3-opacity">Suggest</div>
+                    <br><br>
+                    <div class="mdui-typo-caption-opacity">
+                        We missed a good coffee shop that you believe should be on our list? Please let us know!&nbsp;If you can find their Facebook page, it would really speed up our review process.
+                    </div>
+                </div>
+                <div id="example1-tab2" class="mdui-p-a-2">
+                    <div class="mdui-typo-display-3-opacity">Suggest</div>
+                    <br><br>
+                    <div class="mdui-typo-caption-opacity">
+                        We missed a good coffee shop that you believe should be on our list? Please let us know!&nbsp;If you can find their Facebook page, it would really speed up our review process.
+                    </div>
+                    <br><br>
+                    <div class="mdui-row-xs-3 mdui-row-sm-4 mdui-row-md-5 mdui-row-lg-6 mdui-row-xl-7 mdui-grid-list">
+                        <div class="mdui-col">
+                            <div class="mdui-grid-tile">
+                                <img src="https://mdui-aliyun.cdn.w3cbus.com/docs/assets/docs/img/card.jpg"/>
+                            </div>
+                        </div>
+                        <div class="mdui-col">
+                            <div class="mdui-grid-tile">
+                                <img src="https://mdui-aliyun.cdn.w3cbus.com/docs/assets/docs/img/card.jpg"/>
+                            </div>
+                        </div>
+                        <div class="mdui-col">
+                            <div class="mdui-grid-tile">
+                                <img src="https://mdui-aliyun.cdn.w3cbus.com/docs/assets/docs/img/card.jpg"/>
+                            </div>
+                        </div>
+                        <div class="mdui-col">
+                            <div class="mdui-grid-tile">
+                                <img src="https://mdui-aliyun.cdn.w3cbus.com/docs/assets/docs/img/card.jpg"/>
+                            </div>
+                        </div>
+                        <div class="mdui-col">
+                            <div class="mdui-grid-tile">
+                                <img src="https://mdui-aliyun.cdn.w3cbus.com/docs/assets/docs/img/card.jpg"/>
+                            </div>
+                        </div>
+                        <div class="mdui-col">
+                            <div class="mdui-grid-tile">
+                                <img src="https://mdui-aliyun.cdn.w3cbus.com/docs/assets/docs/img/card.jpg"/>
+                            </div>
+                        </div>
+                        <div class="mdui-col">
+                            <div class="mdui-grid-tile">
+                                <img src="https://mdui-aliyun.cdn.w3cbus.com/docs/assets/docs/img/card.jpg"/>
+                            </div>
+                        </div>
+                        <div class="mdui-col">
+                            <div class="mdui-grid-tile">
+                                <img src="https://mdui-aliyun.cdn.w3cbus.com/docs/assets/docs/img/card.jpg"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="example1-tab3" class="mdui-p-a-2">images content</div>
+
+            </div>
+            <div class="mdui-col-xs-12 mdui-col-sm-5">
+                <div class="mdui-row">
+                        <br>
+                        <img class="mdui-img-circle mdui-center" width="100" src="//mdui-aliyun.cdn.w3cbus.com/docs/assets/docs/img/avatar1.jpg"/>
+                </div>
+                <div class="mdui-row">
+                        <div class="mdui-textfield mdui-textfield-floating-label ">
+                            <i class="mdui-icon material-icons">email</i>
+                            <label class="mdui-textfield-label">Email</label>
+                            <input id="email" class="mdui-textfield-input" type="email" placeholder="Email" required/>
+                        </div>
+                </div>
+                <div class="mdui-row">
+                        <!-- 浮动标签、多行文本框 -->
+                        <div class="mdui-textfield mdui-textfield-floating-label">
+                            <i class="mdui-icon material-icons">lock</i>
+                            <label class="mdui-textfield-label">Password</label>
+                            <input id="password" type="password" class="mdui-textfield-input" placeholder="Password" required/>
+                        </div>
+                </div>
+                <div class="mdui-row">
+                    <!-- 浮动标签、多行文本框 -->
+                    <div class="mdui-textfield mdui-textfield-floating-label">
+                        <i class="mdui-icon material-icons">data_usage</i>
+                        <label class="mdui-textfield-label">CheckCode</label>
+                        <input id="checkCode" type="text" class="mdui-textfield-input" placeholder="CheckCode" required/>
+                    </div>
+                </div>
+                <div class="mdui-row">
+                    <br>
+                    <div class="mdui-text-right">
+                        <img width="180" height="60" src="https://mdui-aliyun.cdn.w3cbus.com/docs/assets/docs/img/card.jpg"/>
+                    </div>
+                </div>
+                <div class="mdui-row">
+                    <div class="mdui-text-right">
+                        <label class="mdui-checkbox ">
+                            <input type="checkbox"/>
+                            <i class="mdui-checkbox-icon"></i>
+                            <button class="mdui-btn mdui-ripple">记住密码</button>
+                        </label>
+                    <label class="mdui-checkbox ">
+                        <input type="checkbox"/>
+                        <i class="mdui-checkbox-icon"></i>
+                        <button class="mdui-btn mdui-ripple">同意我们的服务以及条款</button>
+                    </label>
+                    </div>
+                </div>
+                <div class="mdui-row">
+
+                        <br>
+                    <div class="mdui-text-right">
+                        <button onclick="userLogin()"  id="snakeBar" class="mdui-btn mdui-btn-raised mdui-ripple ">Login in</button>
+                         <button onclick="toRegister()"  id="" class="mdui-btn mdui-btn-raised mdui-ripple ">Register </button>
+                    </div>
+                </div>
+                <div class="mdui-row">
+                    <br>
+
+                </div>
+            </div>
+            </div>
+            <div class="mdui-col-xs-12 mdui-text-center">
+                <div class="mdui-typo-caption-opacity">Copyright Example Company © 2014-2015</div>
+                <br>
+            </div>
+
+    </div>
+</div>
+
+
+
+
+</div>
 
 </body>
+<script src="//mdui-aliyun.cdn.w3cbus.com/source/dist/js/mdui.min.js"></script>
 <script src="/mavenSpringMVC/js/jquery-3.2.1.min.js"></script>
-<script>
-    function test() {
-        $.ajax({
-            type: "POST",
-            url: "/mavenSpringMVC/regist",
-            data: {
-                email:$("#email").val(),
-                password:$("#password").val(),
-              },
-            dataType:"text",
-            success:function (r) {
-                var data=JSON.parse(r);
-                console.log(data)
-                alert(data.data.uid)
+<script src="/mavenSpringMVC/js/ajax.js"></script>
+<script src="/mavenSpringMVC/js/init.js"></script>
 
-            },
-            error: function (err) {
-                alert(err.toString());
-            }
-        });
-    }
-</script>
 </html>
