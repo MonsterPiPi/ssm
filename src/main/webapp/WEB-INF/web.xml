@@ -8,7 +8,35 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <!-- 防止中文参数乱码 放在前面 -->
+  <filter>
+    <filter-name>SetCharacterEncoding</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+      <!-- 强制进行转码 -->
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>SetCharacterEncoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
+  <!-- spring 配置Listener-->
+  <!-- needed for ContextLoaderListener -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:/spring/beans.xml</param-value>
+  </context-param>
+  <!-- Bootstraps the root web application context before servlet initialization -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
   <!--配置springmvc前端控制器 DispatcherServlet-->
   <servlet>
     <servlet-name>springMVC</servlet-name>
@@ -16,13 +44,15 @@
     <init-param>
       <!--Sources标注的文件夹下需要新建一个spring文件夹-->
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:spring/contextConfigLocation.xml</param-value>
+      <param-value>classpath:spring/SpringMVC.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
     <async-supported>true</async-supported>
   </servlet>
+  <!-- Map all requests to the DispatcherServlet for handling -->
   <servlet-mapping>
     <servlet-name>springMVC</servlet-name>
     <url-pattern>/</url-pattern><!--映射根路径-->
   </servlet-mapping>
+
 </web-app>

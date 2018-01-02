@@ -6,31 +6,32 @@
 </head>
 <body>
 
-<input id="email" type="email" >
+    <input id="email" type="email" >
 
-<input id="password" type="password" >
+    <input id="password" type="password" >
 
-<a href="#"   onclick="test()" >Login in</a>
+    <a href="#"   onclick="test()" >Login in</a>
 
 </body>
-<script src="js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript">
+<script src="/mavenSpringMVC/js/jquery-3.2.1.min.js"></script>
+<script>
     function test() {
         $.ajax({
             type: "POST",
-            url: "/index",
+            url: "/mavenSpringMVC/index",
             data: {
                 email:$("#email").val(),
                 password:$("#password").val(),
-            },
-            dataType:"json",
+              },
+            dataType:"text",
             success:function (r) {
-                console.log("1111");
                 var data=JSON.parse(r);
-                alert(data);
+                console.log(data.msg)
+                alert(data.data.uid)
+
             },
             error: function (err) {
-                alert(err);
+                alert(err.toString());
             }
         });
     }
