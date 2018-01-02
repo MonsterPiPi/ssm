@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import com.example.dao.UserDao;
+import com.example.pojo.User;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,4 +20,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     public UserDao userDao;
+
+    public boolean save(User user) {
+
+        return userDao.save(user);
+    }
 }

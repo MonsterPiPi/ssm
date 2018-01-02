@@ -18,7 +18,7 @@
     function test() {
         $.ajax({
             type: "POST",
-            url: "/mavenSpringMVC/index",
+            url: "/mavenSpringMVC/regist",
             data: {
                 email:$("#email").val(),
                 password:$("#password").val(),
@@ -26,7 +26,7 @@
             dataType:"text",
             success:function (r) {
                 var data=JSON.parse(r);
-                console.log(data.msg)
+                console.log(data)
                 alert(data.data.uid)
 
             },

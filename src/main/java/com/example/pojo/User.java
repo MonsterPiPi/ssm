@@ -22,9 +22,7 @@ public class User {
     private String location;
     private String phone;
     private String state;
-    private String isVip;
     private String joinDate;//加入时间
-    private String money;//用户钱数
     private String photo;//用户照片
     private String code;//激活码
 
@@ -84,13 +82,6 @@ public class User {
         this.state = state;
     }
 
-    public String getIsVip() {
-        return isVip;
-    }
-
-    public void setIsVip(String isVip) {
-        this.isVip = isVip;
-    }
 
     public String getJoinDate() {
         return joinDate;
@@ -100,13 +91,6 @@ public class User {
         this.joinDate = joinDate;
     }
 
-    public String getMoney() {
-        return money;
-    }
-
-    public void setMoney(String money) {
-        this.money = money;
-    }
 
     public String getPhoto() {
         return photo;
