@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
         return userDao.save(user);
     }
 
-    public boolean findByEmailAndPassword(String email, String password) {
+    public User findByEmailAndPassword(String email, String password) {
         return userDao.findByEmailAndPassword(email,password);
     }
 

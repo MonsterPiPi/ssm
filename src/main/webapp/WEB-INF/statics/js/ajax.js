@@ -111,6 +111,34 @@ function userRegister(){
         }
     });
 }
+function saveBlog() {
+
+    $.ajax({
+        type: "POST",
+        url: "/mavenSpringMVC/saveBlog",
+        data: {
+            title:$("#title").val(),
+            createTime:$("#nowDate").text(),
+            categories:$("#categories").val(),
+        },
+        dataType:"text",
+        success:function (r) {
+            var data=JSON.parse(r);
+            console.log(data);
+            mdui.snackbar({
+                message: data.msg,
+                position: 'right-bottom'
+            });
+            //alert(data.code)
+        },
+        error: function (err) {
+            mdui.snackbar({
+                message: "Ajax出了点问题",
+                position: 'right-bottom'
+            });
+        }
+    });
+}
 function toLogin() {
     window.location.href = '/mavenSpringMVC/toLogin';//跳转到登陆界面
 }

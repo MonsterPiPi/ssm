@@ -47,18 +47,18 @@ public class UserDaoImpl implements UserDao {
         }
     }
     @SuppressWarnings("unchecked")
-    public boolean findByEmailAndPassword(String email, String password) {
+    public User findByEmailAndPassword(String email, String password) {
         Criteria ctr=session.createCriteria(User.class);
         ctr.add(Restrictions.eq("email", email));
         ctr.add(Restrictions.eq("password",password));
         list= ctr.list();
         if(list.size() > 0) {
-            return true;
+            return list.get(0);
         }else{
-            return false;
+            return null;
         }
     }
-
+    @SuppressWarnings("unchecked")
     public boolean findByEmail(String email) {
         Criteria ctr=session.createCriteria(User.class);
         ctr.add(Restrictions.eq("email", email));

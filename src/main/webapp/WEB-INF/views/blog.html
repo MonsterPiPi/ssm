@@ -35,7 +35,7 @@
                         <div class="mdui-textfield mdui-textfield-floating-label">
                             <i class="mdui-icon material-icons">spa</i>
                             <label class="mdui-textfield-label">Title</label>
-                            <input class="mdui-textfield-input"/>
+                            <input  id="title" class="mdui-textfield-input"/>
                         </div>
                     </div>
                     <div class="mdui-col-xs-12 mdui-col-sm-4">
@@ -43,7 +43,7 @@
                     <div class="mdui-textfield mdui-textfield-floating-label">
                         <i class="mdui-icon material-icons">view_quilt</i>
                         <label class="mdui-textfield-label">Categories</label>
-                        <input class="mdui-textfield-input"/>
+                        <input id="categories" class="mdui-textfield-input"/>
                     </div>
                     </div>
                     <div class="mdui-col-xs-12 mdui-col-sm-4">
@@ -51,7 +51,7 @@
                         <div class="mdui-typo mdui-text-center">
                             <h4>
                                 <font color="#d3d3d3">创建时间 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
-                                <small><font color="#d3d3d3">副标题 Secondary text</font></small>
+                                <small><font color="#d3d3d3"><span id="nowDate"></span></font></small>
                             </h4>
                         </div>
                     </div>
@@ -64,8 +64,11 @@
                 <div class="mdui-col-xs-12">
                     <textarea id="editor" placeholder="这里输入内容" autofocus></textarea>
                     <br><br>
-                <button id="getHtml">获取html</button>
-                <button id="getText">获取text</button>
+                    <div class="mdui-text-right">
+                        <button onclick="saveBlog()"  id="snakeBar" class="mdui-btn mdui-btn-raised mdui-ripple ">Save blog</button>
+                        <button onclick="deleteBlog()"  id="" class="mdui-btn mdui-btn-raised mdui-ripple ">delete blog </button>
+                    </div>
+                    <br>
                 </div>
             </div>
 
@@ -84,6 +87,9 @@
 <script type="text/javascript" src="/mavenSpringMVC/js/uploader.js"></script>
 <script type="text/javascript" src="/mavenSpringMVC/js/simditor.js"></script>
 <script>
+    var myDate = new Date();//获取系统当前时间
+    var mytime=myDate.toLocaleTimeString(); //获取当前时间
+    document.getElementById("nowDate").innerHTML = mytime;
     var editor = new Simditor({
         textarea: $('#editor')
     });

@@ -5,9 +5,11 @@ import com.example.service.UserService;
 import com.example.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.mail.MessagingException;
 import java.security.GeneralSecurityException;
@@ -20,11 +22,12 @@ import java.security.GeneralSecurityException;
  * Talk is cheap. Show me the code.
  */
 @Controller
+@SessionAttributes({"user","user_id"})
 public class UserController {
 
     private User user=new User();
     @Autowired
-    public UserService userService;
+    private UserService userService;
 
     @RequestMapping(value = "/index" )
     @ResponseBody
@@ -70,8 +73,13 @@ public class UserController {
     }
     @RequestMapping(value="/userLogin" ,method= RequestMethod.POST)
     @ResponseBody
-    public Result findByEmailAndPassword(String email,String password) {
-        if(userService.findByEmailAndPassword(email,password)){
+    public Result findByEmailAndPassword(String email,String password,ModelMap map) {
+        User loginUser=userService.findByEmailAndPassword(email,password);
+        if(loginUser!=null){
+            //user会自己注入session中
+            //将email放入session作用域中，这样转发页面也可以取到这个数据。
+            map.addAttribute("user_id", loginUser.getUid());
+            System.out.println(map.get("user_id"));
             return ResultUtil.success();
         }else {
             return ResultUtil.error();

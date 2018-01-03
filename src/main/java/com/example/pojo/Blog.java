@@ -16,7 +16,6 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bid;
     private String title;
-    private String context;
     private String createTime;
     private String fonts;
     private String fileLocation;
@@ -50,13 +49,7 @@ public class Blog {
         this.title = title;
     }
 
-    public String getContext() {
-        return context;
-    }
 
-    public void setContext(String context) {
-        this.context = context;
-    }
 
     public String getCreateTime() {
         return createTime;
