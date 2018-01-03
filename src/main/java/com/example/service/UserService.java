@@ -12,4 +12,6 @@ public interface UserService {
 
 
     boolean findByEmailAndPassword(String email, String password);
+
+    boolean findByEmail(String email);
 }

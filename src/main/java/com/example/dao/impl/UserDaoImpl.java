@@ -59,5 +59,17 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    public boolean findByEmail(String email) {
+        Criteria ctr=session.createCriteria(User.class);
+        ctr.add(Restrictions.eq("email", email));
+        list= ctr.list();
+        if(list.size() > 0) {
+            System.out.println(list.get(0).getNickName());
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
 }

@@ -30,5 +30,9 @@ public class UserServiceImpl implements UserService {
         return userDao.findByEmailAndPassword(email,password);
     }
 
+    public boolean findByEmail(String email) {
+        return userDao.findByEmail(email);
+    }
+
 
 }

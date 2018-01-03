@@ -1,7 +1,11 @@
 package com.example.pojo;
 
 
+
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -25,6 +29,20 @@ public class User {
     private String joinDate;//加入时间
     private String photo;//用户照片
     private String code;//激活码
+
+    @OneToMany(targetEntity=Blog.class, mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Blog> blogs = new HashSet<Blog>();
+
+    public User(){
+
+    }
+    public Set<Blog> getBlogs() {
+        return blogs;
+    }
+
+    public void setBlogs(Set<Blog> blogs) {
+        this.blogs = blogs;
+    }
 
     public int getUid() {
         return uid;

@@ -93,7 +93,7 @@
                         <div class="mdui-textfield mdui-textfield-floating-label ">
                             <i class="mdui-icon material-icons">email</i>
                             <label class="mdui-textfield-label">Email</label>
-                            <input id="email" class="mdui-textfield-input" type="email" placeholder="Email" required/>
+                            <input onblur="checkLoginEmail()" id="email" class="mdui-textfield-input" type="email" required/>
                         </div>
                 </div>
                 <div class="mdui-row">
@@ -101,7 +101,7 @@
                         <div class="mdui-textfield mdui-textfield-floating-label">
                             <i class="mdui-icon material-icons">lock</i>
                             <label class="mdui-textfield-label">Password</label>
-                            <input id="password" type="password" class="mdui-textfield-input" placeholder="Password" required/>
+                            <input id="password" type="password" class="mdui-textfield-input" required/>
                         </div>
                 </div>
                 <div class="mdui-row">
@@ -109,7 +109,7 @@
                     <div class="mdui-textfield mdui-textfield-floating-label">
                         <i class="mdui-icon material-icons">data_usage</i>
                         <label class="mdui-textfield-label">CheckCode</label>
-                        <input id="checkCode" type="text" class="mdui-textfield-input" placeholder="CheckCode" required/>
+                        <input id="checkCode" type="text" class="mdui-textfield-input" required/>
                     </div>
                 </div>
                 <div class="mdui-row">

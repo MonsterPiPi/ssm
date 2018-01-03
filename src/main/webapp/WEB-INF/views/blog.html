@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <title>Material Design 前端框架</title>
+    <link rel="stylesheet" type="text/css" href="/mavenSpringMVC/css/simditor.css" />
+    <link rel="stylesheet" href="//mdui-aliyun.cdn.w3cbus.com/source/dist/css/mdui.min.css?v=0.4.0"/>
+    <link rel="stylesheet" href="//mdui-aliyun.cdn.w3cbus.com/docs/assets/highlight-9.12.0/styles/github-gist.css"/>
+    <link rel="stylesheet" href="//mdui-aliyun.cdn.w3cbus.com/docs/assets/highlight-9.12.0/styles/railscasts.css"/>
+    <link rel="stylesheet" href="//mdui-aliyun.cdn.w3cbus.com/docs/assets/docs/css/docs.css?v=20170815"/>
+</head>
+<body>
+<div class="mdui-container doc-container">
+    <h1 class="doc-title mdui-text-color-theme">博客</h1>
+    <div class="mdui-col-xs-12">
+        <div class="mdui-col-xs-12 mdui-col-sm-12">
+        <div class="mdui-card mdui-hoverable">
+            <div class="mdui-row">
+                <div class="mdui-col-xs-12 mdui-text-center">
+                    <br>
+                    <div class="mdui-typo-subheading-opacity">
+                        <font color="#a9a9a9">
+                            The most terrible enemy, there is no strong belief.
+                        </font>
+                    </div>
+
+                </div>
+                <div class="mdui-col-xs-12">
+                    <div class="mdui-col-xs-12 mdui-col-sm-4">
+                        <!-- 浮动标签、多行文本框 -->
+                        <div class="mdui-textfield mdui-textfield-floating-label">
+                            <i class="mdui-icon material-icons">spa</i>
+                            <label class="mdui-textfield-label">Title</label>
+                            <input class="mdui-textfield-input"/>
+                        </div>
+                    </div>
+                    <div class="mdui-col-xs-12 mdui-col-sm-4">
+                    <!-- 浮动标签、多行文本框 -->
+                    <div class="mdui-textfield mdui-textfield-floating-label">
+                        <i class="mdui-icon material-icons">view_quilt</i>
+                        <label class="mdui-textfield-label">Categories</label>
+                        <input class="mdui-textfield-input"/>
+                    </div>
+                    </div>
+                    <div class="mdui-col-xs-12 mdui-col-sm-4">
+                        <br>
+                        <div class="mdui-typo mdui-text-center">
+                            <h4>
+                                <font color="#d3d3d3">创建时间 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+                                <small><font color="#d3d3d3">副标题 Secondary text</font></small>
+                            </h4>
+                        </div>
+                    </div>
+                <br>
+                </div>
+                <div class="mdui-col-xs-12">
+                    <br><br>
+                    <div class="mdui-divider"></div>
+                </div>
+                <div class="mdui-col-xs-12">
+                    <textarea id="editor" placeholder="这里输入内容" autofocus></textarea>
+                    <br><br>
+                <button id="getHtml">获取html</button>
+                <button id="getText">获取text</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+</div>
+</body>
+<script src="//mdui-aliyun.cdn.w3cbus.com/source/dist/js/mdui.min.js"></script>
+<script src="/mavenSpringMVC/js/jquery-3.2.1.min.js"></script>
+<script src="/mavenSpringMVC/js/ajax.js"></script>
+<script src="/mavenSpringMVC/js/init.js"></script>
+<script type="text/javascript" src="/mavenSpringMVC/js/module.js"></script>
+<script type="text/javascript" src="/mavenSpringMVC/js/hotkeys.js"></script>
+<script type="text/javascript" src="/mavenSpringMVC/js/uploader.js"></script>
+<script type="text/javascript" src="/mavenSpringMVC/js/simditor.js"></script>
+<script>
+    var editor = new Simditor({
+        textarea: $('#editor')
+    });
+</script>
+</html>

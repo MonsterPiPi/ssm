@@ -19,4 +19,17 @@ public  class UUIDUtil {
     public static String getCode(){
         return UUIDUtil.getUUID()+UUIDUtil.getUUID();//64位
     }
+
+    /**
+     * 随机生成6位随机验证码
+     * 方法说明
+     */
+    public static String createRandomVcode(){
+        //验证码
+        String vcode = "";
+        for (int i = 0; i < 6; i++) {
+            vcode = vcode + (int)(Math.random() * 9);
+        }
+        return vcode;
+    }
 }
