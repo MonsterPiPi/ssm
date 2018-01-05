@@ -1,6 +1,9 @@
 package com.example.dao;
 
+import com.example.pojo.Blog;
 import com.example.pojo.Categories;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,4 +15,6 @@ import com.example.pojo.Categories;
 public interface CategoriesDao {
 
     void save(Categories categories);
+
+    List<Categories> findAll();
 }

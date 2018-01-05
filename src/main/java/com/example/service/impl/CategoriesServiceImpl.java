@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User : 51103942@qq.com
@@ -20,7 +22,12 @@ public class CategoriesServiceImpl implements CategoriesService {
 
     @Autowired
     public CategoriesDao categoriesDao;
+
     public void save(Categories categories) {
         categoriesDao.save(categories);
+    }
+
+    public List<Categories> findAll() {
+        return categoriesDao.findAll();
     }
 }

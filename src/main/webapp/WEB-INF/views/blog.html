@@ -16,18 +16,34 @@
 <body>
 <div class="mdui-container doc-container">
     <h1 class="doc-title mdui-text-color-theme">博客</h1>
+
     <div class="mdui-col-xs-12">
         <div class="mdui-col-xs-12 mdui-col-sm-12">
+            <font color="#a9a9a9">
+                Categories&nbsp;&nbsp;&nbsp;&nbsp;
+            </font>
+            <select class="mdui-select" mdui-select="{position: 'bottom'}">
+                <option value="1">       </option>
+                <option value="2">State 2</option>
+                <option value="3">State 3</option>
+                <option value="4">State 4</option>
+                <option value="5">State 5</option>
+                <option value="6">State 6</option>
+            </select>
         <div class="mdui-card mdui-hoverable">
             <div class="mdui-row">
-                <div class="mdui-col-xs-12 mdui-text-center">
+                <div class="mdui-col-xs-12 ">
                     <br>
-                    <div class="mdui-typo-subheading-opacity">
+                    <div class="mdui-typo-subheading-opacity mdui-text-center">
                         <font color="#a9a9a9">
                             The most terrible enemy, there is no strong belief.
+                            <br>
+                        </font>
+                        <font color="#1e90ff">
+                            <br>
+                            字数：<span id="num">0</span>
                         </font>
                     </div>
-
                 </div>
                 <div class="mdui-col-xs-12">
                     <div class="mdui-col-xs-12 mdui-col-sm-4">
@@ -42,9 +58,10 @@
                     <!-- 浮动标签、多行文本框 -->
                     <div class="mdui-textfield mdui-textfield-floating-label">
                         <i class="mdui-icon material-icons">view_quilt</i>
-                        <label class="mdui-textfield-label">Categories</label>
-                        <input id="categories" class="mdui-textfield-input"/>
+                        <label class="mdui-textfield-label">Profile</label>
+                        <input id="profile" class="mdui-textfield-input"/>
                     </div>
+
                     </div>
                     <div class="mdui-col-xs-12 mdui-col-sm-4">
                         <br>
@@ -59,6 +76,7 @@
                 </div>
                 <div class="mdui-col-xs-12">
                     <br><br>
+
                     <div class="mdui-divider"></div>
                 </div>
                 <div class="mdui-col-xs-12">
@@ -87,11 +105,50 @@
 <script type="text/javascript" src="/mavenSpringMVC/js/uploader.js"></script>
 <script type="text/javascript" src="/mavenSpringMVC/js/simditor.js"></script>
 <script>
+            var editor,toolbar;
+            Simditor.locale = 'zh-CN';
+            toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'hr', '|', 'indent', 'outdent', 'alignment'];
+            editor = new Simditor({
+                textarea: $('#editor'),
+                placeholder: '这里输入文字...',
+                toolbar: toolbar,
+                pasteImage: true,
+                defaultImage: '/simditor/images/image.png',
+                upload: false
+            });
+
     var myDate = new Date();//获取系统当前时间
     var mytime=myDate.toLocaleTimeString(); //获取当前时间
     document.getElementById("nowDate").innerHTML = mytime;
-    var editor = new Simditor({
-        textarea: $('#editor')
-    });
+
+    function saveBlog() {
+        var blog=editor.getValue();
+        $.ajax({
+            type: "POST",
+            url: "/mavenSpringMVC/saveBlog",
+            data: {
+                title:$("#title").val(),
+                createTime:$("#nowDate").text(),
+                profile:$("#profile").val(),
+                context:blog
+            },
+            dataType:"text",
+            success:function (r) {
+                var data=JSON.parse(r);
+                console.log(data);
+                mdui.snackbar({
+                    message: data.msg,
+                    position: 'right-bottom'
+                });
+                //alert(data.code)
+            },
+            error: function (err) {
+                mdui.snackbar({
+                    message: "Ajax出了点问题",
+                    position: 'right-bottom'
+                });
+            }
+        });
+    }
 </script>
 </html>

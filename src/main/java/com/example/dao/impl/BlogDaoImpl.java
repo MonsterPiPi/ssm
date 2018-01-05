@@ -3,6 +3,7 @@ package com.example.dao.impl;
 import com.example.dao.BlogDao;
 import com.example.pojo.Blog;
 import com.example.pojo.User;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,17 @@ public class BlogDaoImpl implements BlogDao {
 
     public void save(Blog blog) {
         ht.save(blog);
+    }
+
+    public List<Blog> findBlogs(String searchText) {
+        String queryString = "from Blog s where s.title like'%"+searchText+"%'";
+        //注意这个HQL语句的拼接部分,不能写错！
+        Query queryObject = session.createQuery(queryString);
+        list=queryObject.list();
+        if (list.size()>0){
+            return list;
+        }else {
+            return null;
+        }
     }
 }

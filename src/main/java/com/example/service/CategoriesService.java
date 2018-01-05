@@ -2,6 +2,8 @@ package com.example.service;
 
 import com.example.pojo.Categories;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User : 51103942@qq.com
@@ -12,4 +14,6 @@ import com.example.pojo.Categories;
 public interface CategoriesService {
 
     void save(Categories categories);
+
+    List<Categories> findAll();
 }

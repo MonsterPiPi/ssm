@@ -3,6 +3,7 @@ package com.example.dao.impl;
 import com.example.dao.CategoriesDao;
 import com.example.pojo.Blog;
 import com.example.pojo.Categories;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CategoriesDaoImpl implements CategoriesDao {
     private SessionFactory sessionFactory;
     private HibernateTemplate ht;
     private Session session;
-    private List<Blog> list;
+    private List<Categories> list;
 
     @Autowired
     public CategoriesDaoImpl(SessionFactory sessionFactory) {
@@ -38,5 +39,16 @@ public class CategoriesDaoImpl implements CategoriesDao {
 
     public void save(Categories categories) {
         ht.save(categories);
+    }
+
+    public List<Categories> findAll() {
+        String hql = "from Categories";
+        Query query=session.createQuery(hql);
+        list=query.list();
+        if (list.size()>0){
+            return list;
+        }else {
+            return null;
+        }
     }
 }

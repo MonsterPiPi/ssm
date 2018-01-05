@@ -1,6 +1,8 @@
+
+
 function checkLoginEmail() {
     $.ajax({
-        url:"/mavenSpringMVC/checkLoginEmail", //请求验证页面
+        url:"/mavenSpringMVC/user/checkLoginEmail", //请求验证页面
         type:"GET", //请求方式 可换为post 注意验证页面接收方式
         data:{email:$("#email").val()},//取得表文本框数据，作为提交数据 注意前面的 user 此处格式 key=value 其他方式请参考ajax手册
         dataType:"text",
@@ -41,28 +43,20 @@ function userLogin(){
         });
         event.preventDefault(); // 兼容标准浏览器
         window.event.returnValue = false; // 兼容IE6~8
-    }else if($("#phone").val()==""){
-        mdui.snackbar({
-            message: "请输入手机号",
-            position: 'right-bottom'
-        });
-        event.preventDefault(); // 兼容标准浏览器
-        window.event.returnValue = false; // 兼容IE6~8
-    }
-    else {
+    } else {
         $.ajax({
             type: "POST",
-            url: "/mavenSpringMVC/userLogin",
+            url: "/mavenSpringMVC/user/login",
             data: {
                 email: $("#email").val(),
                 password: $("#password").val(),
             },
             dataType: "text",
             success: function (r) {
+
                 var data = JSON.parse(r);
                 console.log(data);
                 if (data.msg=="成功"){
-                    loginSuccess();
                     toHome();
                 }else {
                     mdui.snackbar({
@@ -85,7 +79,7 @@ function userLogin(){
 function userRegister(){
     $.ajax({
         type: "POST",
-        url: "/mavenSpringMVC/userRegister",
+        url: "/mavenSpringMVC/user/register",
         data: {
             email:$("#email").val(),
             password:$("#password").val(),
@@ -111,15 +105,15 @@ function userRegister(){
         }
     });
 }
-function saveBlog() {
-
+function  mySearchText(){
+    var search= document.getElementById("searchText").value;
+    //alert(search);
+    console.log(search);
     $.ajax({
         type: "POST",
-        url: "/mavenSpringMVC/saveBlog",
+        url: "/mavenSpringMVC/blog/search",
         data: {
-            title:$("#title").val(),
-            createTime:$("#nowDate").text(),
-            categories:$("#categories").val(),
+            searchText:search
         },
         dataType:"text",
         success:function (r) {
@@ -139,23 +133,94 @@ function saveBlog() {
         }
     });
 }
+mdui.JQ('#example-prompt-3').on('click', function () {
+    mdui.prompt('请输入文本', '添加类别',
+        function (value) {
+            $.ajax({
+                type: "POST",
+                url: "/mavenSpringMVC/categories/add",
+                data: {
+                    name:value
+                },
+                dataType:"text",
+                success:function (r) {
+                    var data=JSON.parse(r);
+                    console.log(data);
+                    mdui.snackbar({
+                        message: data.msg,
+                        position: 'right-bottom'
+                    });
+                    toCategories();
+                    //alert(data.code)
+                },
+                error: function (err) {
+                    mdui.snackbar({
+                        message: "Ajax出了点问题",
+                        position: 'right-bottom'
+                    });
+                }
+            });
+        },
+        function () {
+            mdui.snackbar({
+                message: "没有输入内容",
+                position: 'right-bottom'
+            });
+        }
+    );
+});
 function toLogin() {
-    window.location.href = '/mavenSpringMVC/toLogin';//跳转到登陆界面
+    window.location.href = '/mavenSpringMVC/user/toLogin';//跳转到登陆界面
 }
 function toRegister() {
-    window.location.href = '/mavenSpringMVC/toRegister';//跳转到注册界面
+    window.location.href = '/mavenSpringMVC/user/toRegister';//跳转到注册界面
 }
 function toHome() {
-    window.location.href = '/mavenSpringMVC/toHome';//跳转到注册界面
+    window.location.href = '/mavenSpringMVC/home/toHome';//
 }
 function toAbout() {
-    $("#main").load("/mavenSpringMVC/toAbout");
+    $("#main").load("/mavenSpringMVC/home/toAbout");
 }
 function toCategories() {
-    $("#main").load("/mavenSpringMVC/toCategories");
+    $("#main").load("/mavenSpringMVC/home/toCategories");
+    $.ajax({
+        type: "POST",
+        url: "/mavenSpringMVC/categories/all",
+        data: {
+        },
+        dataType:"text",
+        success:function (r) {
+            var html = "";
+            var data=JSON.parse(r);
+            console.log(data);
+            for(var i=0;i<data.data.length;i++){    //遍历data数组
+                var ls = data.data[i];
+                html+=
+                    "<li class=\"mdui-list-item mdui-ripple\">\n" +
+                    "                        <div class=\"mdui-list-item-content\">\n" +
+                    "                            <div class=\"mdui-list-item-title\">"+ls.name+"</div>\n" +
+                    "                            <div class=\"mdui-list-item-text\">"+ls.createDate+"</div>\n" +
+                    "                        </div>\n" +
+                    "                        <label class=\"mdui-switch\">\n" +
+                    "                            <input type=\"checkbox\" />\n" +
+                    "                            <i class=\"mdui-switch-icon\"></i>\n" +
+                    "                        </label>\n" +
+                    "                    </li>";
+            }
+            $("#ulul").html(html); //在html页面id=ulul的标签里显示html内
+            $("#categoriesNumber").html(data.data.length);
+            //alert(data.code)
+        },
+        error: function (err) {
+            mdui.snackbar({
+                message: "Ajax出了点问题",
+                position: 'right-bottom'
+            });
+        }
+    });
 }
 function toBlog() {
-    $("#main").load("/mavenSpringMVC/toBlog");
+    $("#main").load("/mavenSpringMVC/home/toBlog");
 }
 function loginSuccess() {
     mdui.snackbar({

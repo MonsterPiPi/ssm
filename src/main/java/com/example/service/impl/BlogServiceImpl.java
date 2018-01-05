@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User : 51103942@qq.com
@@ -23,5 +25,9 @@ public class BlogServiceImpl implements BlogService {
 
     public void save(Blog blog) {
          blogDao.save(blog);
+    }
+
+    public List<Blog> findBlogs(String searchText) {
+        return blogDao.findBlogs(searchText);
     }
 }

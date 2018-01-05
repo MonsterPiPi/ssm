@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpSession;
 import java.security.GeneralSecurityException;
+
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,10 +23,11 @@ import java.security.GeneralSecurityException;
  * Talk is cheap. Show me the code.
  */
 @Controller
-@SessionAttributes({"user","user_id"})
+@RequestMapping(value = "/user")
 public class UserController {
 
     private User user=new User();
+
     @Autowired
     private UserService userService;
 
@@ -43,13 +45,15 @@ public class UserController {
     @ResponseBody
     public Result checkLoginEmail(String email){
         if(userService.findByEmail(email)){
+
             return ResultUtil.success();
         }else {
             return ResultUtil.error();
         }
+
     }
 
-    @RequestMapping(value="/userRegister" ,method= RequestMethod.POST)
+    @RequestMapping(value="/register" ,method= RequestMethod.POST)
     @ResponseBody
     public Result save(String email,String password,String nickName,String location,String phone) throws GeneralSecurityException, MessagingException {
 
@@ -71,21 +75,22 @@ public class UserController {
         }
 
     }
-    @RequestMapping(value="/userLogin" ,method= RequestMethod.POST)
+    @RequestMapping(value="/login" ,method= RequestMethod.POST)
     @ResponseBody
-    public Result findByEmailAndPassword(String email,String password,ModelMap map) {
+    public Result findByEmailAndPassword(HttpSession httpSession, String email, String password) {
         User loginUser=userService.findByEmailAndPassword(email,password);
         if(loginUser!=null){
             //user会自己注入session中
             //将email放入session作用域中，这样转发页面也可以取到这个数据。
-            map.addAttribute("user_id", loginUser.getUid());
-            System.out.println(map.get("user_id"));
+            httpSession.setAttribute("username",loginUser.getNickName());
+            System.out.println(httpSession.getAttribute("username"));
             return ResultUtil.success();
         }else {
             return ResultUtil.error();
         }
 
     }
+
 
     /**
      * 页面跳转控制
@@ -101,20 +106,5 @@ public class UserController {
         return "register";
     }
 
-    @RequestMapping(value = "/toHome",method = RequestMethod.GET)
-    public String toHome(){
-        return "index";
-    }
-    @RequestMapping(value = "/toAbout",method = RequestMethod.GET)
-    public String toAbout(){
-        return "about";
-    }
-    @RequestMapping(value = "/toCategories",method = RequestMethod.GET)
-    public String toCategories(){
-        return "categories";
-    }
-    @RequestMapping(value = "/toBlog",method = RequestMethod.GET)
-    public String toBlog(){
-        return "blog";
-    }
+
 }

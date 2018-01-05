@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User : 51103942@qq.com
@@ -23,28 +26,45 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  * Talk is cheap. Show me the code.
  */
 @Controller
-@SessionAttributes({"user","user_id"})
+@RequestMapping(value = "/blog")
 public class BlogController {
     private Blog blog=new Blog();
+    private List<Blog> list;
     private Categories ca=new Categories();
+
     @Autowired
     public BlogService blogService;
+
     @Autowired
     public CategoriesService categoriesService;
 
-    @RequestMapping(value = "/saveBlog",method = RequestMethod.POST)
+    @RequestMapping(value = "/save",method = RequestMethod.POST)
     @ResponseBody
-    public Result saveBlog(String title, String createTime, String categories, ModelMap map) {
-        ca.setName(categories);
-        ca.setCreateDate(createTime);
-        categoriesService.save(ca);
+    public Result saveBlog(String title, String createTime, String profile, String context, HttpSession httpSession) {
+
+        System.out.println(context);
         User user=new User();
-        user.setUid((Integer) map.get("user_id"));
+
+        user.setUid((Integer)httpSession.getAttribute("username"));
         blog.setTitle(title);
         blog.setCreateTime(createTime);
         blog.setUser(user);
-        blogService.save(blog);
-        System.out.println(categories);
+        blog.setFonts("未知");
+        //blogService.save(blog);
+        System.out.println(profile);
         return ResultUtil.success(blog);
+    }
+
+
+    @RequestMapping(value="/search" ,method= RequestMethod.POST)
+    @ResponseBody
+    public Result search(String searchText){
+
+        list=blogService.findBlogs(searchText);
+        if (list!=null){
+            return  ResultUtil.success(list);
+        }else {
+            return ResultUtil.error();
+        }
     }
 }

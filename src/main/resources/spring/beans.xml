@@ -2,11 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-    <context:component-scan base-package="com.example">
-        <context:exclude-filter type="annotation"
-              expression="org.springframework.stereotype.Controller"/>
-    </context:component-scan>
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- 使用注解 -->
+    <context:component-scan base-package="com.example.dao.impl" />
+    <context:component-scan base-package="com.example.service.impl" />
+    <context:component-scan base-package="com.example.controller" />
+
     <!-- 引入外部的属性文件 -->
     <context:property-placeholder location="classpath:/jdbc.properties"/>
 
@@ -58,6 +59,8 @@
             </list>
         </property>
     </bean>
+
+
     <!-- 配置事务管理器 -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"></property>

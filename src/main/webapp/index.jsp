@@ -680,7 +680,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
     function toLogin() {
-        window.location.href = '/mavenSpringMVC/toLogin';//跳转到登陆界面
+        window.location.href = '/mavenSpringMVC/user/toLogin';//跳转到登陆界面
     }
 </script>
 
