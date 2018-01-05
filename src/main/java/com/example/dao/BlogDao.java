@@ -12,7 +12,10 @@ import java.util.List;
  * Talk is cheap. Show me the code.
  */
 public interface BlogDao {
+
     void save(Blog blog);
 
     List<Blog> findBlogs(String searchText);
+
+    List<Blog> findAll();
 }

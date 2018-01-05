@@ -2,10 +2,12 @@ package com.example.dao.impl;
 
 import com.example.dao.BlogDao;
 import com.example.pojo.Blog;
-import com.example.pojo.User;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -41,15 +43,36 @@ public class BlogDaoImpl implements BlogDao {
         ht.save(blog);
     }
 
+    @SuppressWarnings("unchecked")
     public List<Blog> findBlogs(String searchText) {
-        String queryString = "from Blog s where s.title like'%"+searchText+"%'";
-        //注意这个HQL语句的拼接部分,不能写错！
-        Query queryObject = session.createQuery(queryString);
-        list=queryObject.list();
+        Criteria ctr=session.createCriteria(Blog.class);
+        list= ctr.list();
+        if(list.size() > 0) {
+            return list;
+        }else{
+            return null;
+        }
+    }
+
+    public List<Blog> findAll() {
+        String hql = "from Blog";
+        Query query=session.createQuery(hql);
+        list=query.list();
         if (list.size()>0){
             return list;
         }else {
             return null;
         }
     }
+    /**
+     *  Criteria ctr=session.createCriteria(Blog.class);
+     ctr.add(Restrictions.like("title",searchText, MatchMode.ANYWHERE ));
+     list= ctr.list();
+     if(list.size() > 0) {
+     return list;
+     }else{
+     return null;
+     }
+     */
+
 }

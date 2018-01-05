@@ -118,7 +118,8 @@ function  mySearchText(){
         dataType:"text",
         success:function (r) {
             var data=JSON.parse(r);
-            console.log(data);
+            console.log(data.toString());
+            console.log(data.data[0].title);
             mdui.snackbar({
                 message: data.msg,
                 position: 'right-bottom'
@@ -227,4 +228,89 @@ function loginSuccess() {
         message: "登陆成功",
         position: 'right-bottom'
     });
+}
+var test=document.getElementById("test");
+function test() {
+    var realPay = test.innerText;
+    console.log(realPay);
+    //alert(this.id);
+    $.ajax({
+        url: "/mavenSpringMVC/blog/openBlog", //请求验证页面
+        type: "POST", //请求方式 可换为post 注意验证页面接收方式
+        data: {title: "1111"},//取得表文本框数据，作为提交数据 注意前面的 user 此处格式 key=value 其他方式请参考ajax手册
+        dataType: "text",
+        success: function (r) { //请求成功时执行操作
+            var data = JSON.parse(r);
+            if (data.code == 0) {
+                toOneBlog();
+            } else {
+                mdui.snackbar({
+                    message: "失败",
+                    position: 'right-bottom'
+                });
+            }
+        },
+        error: function () {
+            return false;
+        }
+    });
+}
+function toOneBlog() {
+    $("#main").load("/mavenSpringMVC/blog/toOneBlog");
+
+}
+function exit() {
+    mdui.dialog({
+        title: '确定要退出该页面么',
+        buttons: [
+            {
+                text: '取消'
+            },
+            {
+                text: '确认',
+                onClick: function(inst){
+                    $.ajax({
+                        url: "/mavenSpringMVC/user/exit", //请求验证页面
+                        type: "POST", //请求方式 可换为post 注意验证页面接收方式
+                        data: {},//取得表文本框数据，作为提交数据 注意前面的 user 此处格式 key=value 其他方式请参考ajax手册
+                        dataType: "text",
+                        success: function (r) { //请求成功时执行操作
+                            var data = JSON.parse(r);
+                            if (data.code == 0) {
+                                window.location.reload();
+                            } else {
+                                mdui.snackbar({
+                                    message: "失败",
+                                    position: 'right-bottom'
+                                });
+                            }
+                        },
+                        error: function () {
+                            return false;
+                        }
+                    });
+                }
+            }
+        ]
+    });
+
+}
+function closeWebPage() {
+    if (navigator.userAgent.indexOf("MSIE") > 0) {
+        if (navigator.userAgent.indexOf("MSIE 6.0") > 0) {
+            window.opener = null; window.close();
+        }
+        else {
+            window.open('', '_top'); window.top.close();
+        }
+    }
+    else if (navigator.userAgent.indexOf("Firefox") > 0) {
+        window.location.href = 'about:blank '; //火狐默认状态非window.open的页面window.close是无效的
+        //window.history.go(-2);
+    }
+    else {
+        window.opener = null;
+        window.open('', '_self', '');
+        window.close();
+    }
 }

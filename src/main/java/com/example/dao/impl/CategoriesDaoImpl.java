@@ -41,6 +41,7 @@ public class CategoriesDaoImpl implements CategoriesDao {
         ht.save(categories);
     }
 
+    @SuppressWarnings("unchecked")
     public List<Categories> findAll() {
         String hql = "from Categories";
         Query query=session.createQuery(hql);

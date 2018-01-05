@@ -30,4 +30,8 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> findBlogs(String searchText) {
         return blogDao.findBlogs(searchText);
     }
+
+    public List<Blog> findAll() {
+        return blogDao.findAll();
+    }
 }

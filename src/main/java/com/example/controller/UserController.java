@@ -90,6 +90,12 @@ public class UserController {
         }
 
     }
+    @RequestMapping(value = "exit",method = RequestMethod.POST)
+    @ResponseBody
+    public Result exit(HttpSession session){
+        session.removeAttribute("username");
+        return ResultUtil.success();
+    }
 
 
     /**

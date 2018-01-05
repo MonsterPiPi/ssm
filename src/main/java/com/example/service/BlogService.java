@@ -16,4 +16,6 @@ public interface BlogService {
     void save(Blog blog);
 
     List<Blog> findBlogs(String searchText);
+
+    List<Blog> findAll();
 }

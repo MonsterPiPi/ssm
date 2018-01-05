@@ -9,11 +9,9 @@ import com.example.util.Result;
 import com.example.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -55,16 +53,34 @@ public class BlogController {
         return ResultUtil.success(blog);
     }
 
+    @RequestMapping(value = "/openBlog",method = RequestMethod.POST)
+    @ResponseBody
+    public Result openBlog(String title){
+        System.out.println(title);
+        return ResultUtil.success();
+    }
+
 
     @RequestMapping(value="/search" ,method= RequestMethod.POST)
     @ResponseBody
     public Result search(String searchText){
-
         list=blogService.findBlogs(searchText);
         if (list!=null){
             return  ResultUtil.success(list);
         }else {
             return ResultUtil.error();
         }
+    }
+
+    @RequestMapping(value = "toOneBlog")
+    public String toOneBlog(){
+        list=blogService.findAll();
+        System.out.println(list.toString());
+        return "test";
+    }
+
+
+    public void findAll(){
+
     }
 }
