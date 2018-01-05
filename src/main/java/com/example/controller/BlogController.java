@@ -55,6 +55,13 @@ public class BlogController {
         return ResultUtil.success(blog);
     }
 
+    @RequestMapping(value = "/openBlog",method = RequestMethod.POST)
+    @ResponseBody
+    public Result openBlog(String title){
+        System.out.println(title);
+        return ResultUtil.success();
+    }
+
 
     @RequestMapping(value="/search" ,method= RequestMethod.POST)
     @ResponseBody
@@ -66,5 +73,10 @@ public class BlogController {
         }else {
             return ResultUtil.error();
         }
+    }
+
+    @RequestMapping(value = "toOneBlog")
+    public String toOneBlog(){
+        return "test";
     }
 }
