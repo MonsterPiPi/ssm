@@ -31,7 +31,7 @@ public class User {
     private String code;//激活码
 
     @OneToMany(targetEntity=Blog.class, mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Blog> blogs = new HashSet<Blog>();
+    private Set<Blog> blogs ;
 
     public User(){
 

@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "t_blog")
 public class Blog {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bid;
@@ -20,15 +21,14 @@ public class Blog {
     private String fonts;
     private String fileLocation;
     private String photo;//封面
+    private String categories;//分类
 
     @ManyToOne(fetch = FetchType.LAZY,targetEntity = User.class)
     @JoinColumn(name="user_id", referencedColumnName="uid")//外键为user_id，与user中的id关联
     private User user;
 
 
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Categories.class)
-    @JoinColumn(name="categories_id", referencedColumnName="cid")//外键为user_id，与user中的id关联
-    private Categories categories;
+
     public Blog(){
 
     }
@@ -91,11 +91,11 @@ public class Blog {
         this.user = user;
     }
 
-    public Categories getCategories() {
+    public String getCategories() {
         return categories;
     }
 
-    public void setCategories(Categories categories) {
+    public void setCategories(String categories) {
         this.categories = categories;
     }
 }

@@ -34,4 +34,10 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> findAll() {
         return blogDao.findAll();
     }
+
+    public List<Blog> findAllCategories() {
+        return blogDao.findAllCategories();
+    }
+
+
 }

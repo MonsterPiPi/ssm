@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <title>HAHA</title>
+    <link rel="stylesheet" href="//mdui-aliyun.cdn.w3cbus.com/source/dist/css/mdui.min.css?v=0.4.0"/>
+</head>
+<body class="mdui-color-lime-200">
+    <div class="mdui-container doc-container">
+        <div class="mdui-col-xs-12 mdui-col-sm-12 mdui-text-center">
+            <br><br>  <br><br>  <br><br>
+            <font size="7" color="#808080"> &nbsp;LOCK&nbsp; &nbsp;&nbsp;SCREEN</font>
+        </div>
+
+        <div class="mdui-col-xs-12">
+        <div class="mdui-col-xs-12 mdui-col-sm-4">
+        </div>
+        <div class="mdui-col-xs-12 mdui-col-sm-4">
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <br><br><br>
+                <i class="mdui-icon material-icons">lock</i>
+                <label class="mdui-textfield-label">lock</label>
+                <input class="mdui-textfield-input" onkeyup="" type="text"/>
+            </div>
+
+        </div>
+        <div class="mdui-col-xs-12 mdui-col-sm-4">
+        </div>
+        </div>
+    </div>
+</body>
+
+<script src="/mavenSpringMVC/js/jquery-3.2.1.min.js"></script>
+<script src="//mdui-aliyun.cdn.w3cbus.com/source/dist/js/mdui.min.js?v=0.4.0"></script>
+<!--禁用浏览器后退-->
+<script>
+    $(document).ready(function(e) {
+        var counter = 0;
+        if (window.history && window.history.pushState) {
+            $(window).on('popstate', function () {
+                window.history.pushState('forward', null, '#');
+                window.history.forward(1);
+                //alert("不可回退");
+            });
+        }
+
+        window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
+        window.history.forward(1);
+    });
+</script>
+</html>

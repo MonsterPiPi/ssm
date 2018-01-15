@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <title>Material Design 前端框架</title>
+    <title>Material Design </title>
     <link rel="stylesheet" type="text/css" href="/mavenSpringMVC/css/simditor.css" />
     <link rel="stylesheet" href="//mdui-aliyun.cdn.w3cbus.com/source/dist/css/mdui.min.css?v=0.4.0"/>
     <link rel="stylesheet" href="//mdui-aliyun.cdn.w3cbus.com/docs/assets/highlight-9.12.0/styles/github-gist.css"/>
@@ -19,17 +19,6 @@
 
     <div class="mdui-col-xs-12">
         <div class="mdui-col-xs-12 mdui-col-sm-12">
-            <font color="#a9a9a9">
-                Categories&nbsp;&nbsp;&nbsp;&nbsp;
-            </font>
-            <select class="mdui-select" mdui-select="{position: 'bottom'}">
-                <option value="1">       </option>
-                <option value="2">State 2</option>
-                <option value="3">State 3</option>
-                <option value="4">State 4</option>
-                <option value="5">State 5</option>
-                <option value="6">State 6</option>
-            </select>
         <div class="mdui-card mdui-hoverable">
             <div class="mdui-row">
                 <div class="mdui-col-xs-12 ">
@@ -58,8 +47,8 @@
                     <!-- 浮动标签、多行文本框 -->
                     <div class="mdui-textfield mdui-textfield-floating-label">
                         <i class="mdui-icon material-icons">view_quilt</i>
-                        <label class="mdui-textfield-label">Profile</label>
-                        <input id="profile" class="mdui-textfield-input"/>
+                        <label class="mdui-textfield-label">Categories</label>
+                        <input id="categories" class="mdui-textfield-input"/>
                     </div>
 
                     </div>
@@ -125,11 +114,11 @@
         var blog=editor.getValue();
         $.ajax({
             type: "POST",
-            url: "/mavenSpringMVC/saveBlog",
+            url: "/mavenSpringMVC/blog/save",
             data: {
                 title:$("#title").val(),
                 createTime:$("#nowDate").text(),
-                profile:$("#profile").val(),
+                categories:$("#categories").val(),
                 context:blog
             },
             dataType:"text",

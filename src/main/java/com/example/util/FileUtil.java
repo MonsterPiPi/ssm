@@ -17,11 +17,13 @@ import java.io.IOException;
  */
 public class FileUtil {
 
-    final static String directory="src/main/webapp/WEB-INF/statics/blog/";
+
+    //src/main/webapp/WEB-INF/statics/blog/
+    public final static String directory="http://localhost:8080/mavenSpringMVC/blog/";
 
     @Test
-    public void TestSaveBlog() throws IOException {
-       //saveBlog("test","test the save blog");
+    public void TestSaveBlog(HttpServletRequest req) throws IOException {
+       //newFile("test","test the save blog");
         //newFolder(directory);
         //delFile(directory+"test.txt");
         //delFolder(directory);
@@ -40,7 +42,7 @@ public class FileUtil {
             System.out.println("新建目录操作 成功执行");
     }
 
-    public  static  void newFile(String FileName,String FileText) throws IOException {
+    public  static  void newFile(String Directory, String FileName,String FileText) throws IOException {
         //注释掉的为方法一
     /*File file=new File(directory,filename);
     if (file.exists()) {
@@ -55,13 +57,14 @@ public class FileUtil {
             e.printStackTrace();
         }
     }*/
-        File file=new File(directory,FileName+".txt");
+
+        File file=new File(Directory,FileName+".txt");
         if (!file.exists()) {
             file.createNewFile();
         }
             //向指定文件中写入文字
             FileWriter fileWriter;
-            fileWriter = new FileWriter(directory+FileName+".txt");
+            fileWriter = new FileWriter(Directory+FileName+".txt");
             //使用缓冲区比不使用缓冲区效果更好，因为每趟磁盘操作都比内存操作要花费更多时间。
             //通过BufferedWriter和FileWriter的连接，BufferedWriter可以暂存一堆数据，然后到满时再实际写入磁盘
             //这样就可以减少对磁盘操作的次数。如果想要强制把缓冲区立即写入,只要调用writer.flush();这个方法就可以要求缓冲区马上把内容写下去

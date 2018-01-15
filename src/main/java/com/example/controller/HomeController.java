@@ -35,4 +35,9 @@ public class HomeController {
     public String toBlog(){
         return "blog";
     }
+
+    @RequestMapping(value = "/toLockScreen",method = RequestMethod.GET)
+    public String toLockScreen(){
+        return "lockScreen";
+    }
 }

@@ -18,4 +18,7 @@ public interface BlogService {
     List<Blog> findBlogs(String searchText);
 
     List<Blog> findAll();
+
+
+    List<Blog> findAllCategories();
 }

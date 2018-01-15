@@ -1,5 +1,3 @@
-
-
 function checkLoginEmail() {
     $.ajax({
         url:"/mavenSpringMVC/user/checkLoginEmail", //请求验证页面
@@ -53,7 +51,6 @@ function userLogin(){
             },
             dataType: "text",
             success: function (r) {
-
                 var data = JSON.parse(r);
                 console.log(data);
                 if (data.msg=="成功"){
@@ -139,7 +136,7 @@ mdui.JQ('#example-prompt-3').on('click', function () {
         function (value) {
             $.ajax({
                 type: "POST",
-                url: "/mavenSpringMVC/categories/add",
+                url: "/mavenSpringMVC/blog/categories/add",
                 data: {
                     name:value
                 },
@@ -185,8 +182,8 @@ function toAbout() {
 function toCategories() {
     $("#main").load("/mavenSpringMVC/home/toCategories");
     $.ajax({
+        url: "/mavenSpringMVC/blog/categories/all",
         type: "POST",
-        url: "/mavenSpringMVC/categories/all",
         data: {
         },
         dataType:"text",
@@ -194,27 +191,24 @@ function toCategories() {
             var html = "";
             var data=JSON.parse(r);
             console.log(data);
+
             for(var i=0;i<data.data.length;i++){    //遍历data数组
                 var ls = data.data[i];
                 html+=
                     "<li class=\"mdui-list-item mdui-ripple\">\n" +
                     "                        <div class=\"mdui-list-item-content\">\n" +
-                    "                            <div class=\"mdui-list-item-title\">"+ls.name+"</div>\n" +
-                    "                            <div class=\"mdui-list-item-text\">"+ls.createDate+"</div>\n" +
+                    "                            <div class=\"mdui-list-item-title\">"+ls+"</div>\n" +
                     "                        </div>\n" +
-                    "                        <label class=\"mdui-switch\">\n" +
-                    "                            <input type=\"checkbox\" />\n" +
-                    "                            <i class=\"mdui-switch-icon\"></i>\n" +
-                    "                        </label>\n" +
                     "                    </li>";
             }
             $("#ulul").html(html); //在html页面id=ulul的标签里显示html内
             $("#categoriesNumber").html(data.data.length);
+
             //alert(data.code)
         },
         error: function (err) {
             mdui.snackbar({
-                message: "Ajax出了点问题",
+                message: "错误",
                 position: 'right-bottom'
             });
         }
@@ -222,6 +216,9 @@ function toCategories() {
 }
 function toBlog() {
     $("#main").load("/mavenSpringMVC/home/toBlog");
+}
+function toLockScreen() {
+    window.location.href = '/mavenSpringMVC/home/toLockScreen';//跳转到登陆界面
 }
 function loginSuccess() {
     mdui.snackbar({
@@ -277,7 +274,7 @@ function exit() {
                         success: function (r) { //请求成功时执行操作
                             var data = JSON.parse(r);
                             if (data.code == 0) {
-                                window.location.reload();
+                                toLockScreen();
                             } else {
                                 mdui.snackbar({
                                     message: "失败",
@@ -294,6 +291,14 @@ function exit() {
         ]
     });
 
+}
+function lockScreen() {
+    mdui.confirm('确定锁屏么?', '锁屏',
+        function(){
+            mdui.alert('点击了确认按钮');
+            toLockScreen();
+        },
+    );
 }
 function closeWebPage() {
     if (navigator.userAgent.indexOf("MSIE") > 0) {

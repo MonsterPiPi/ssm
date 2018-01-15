@@ -1,19 +1,19 @@
 package com.example.controller;
 
 import com.example.pojo.Blog;
-import com.example.pojo.Categories;
 import com.example.pojo.User;
 import com.example.service.BlogService;
-import com.example.service.CategoriesService;
-import com.example.util.Result;
-import com.example.util.ResultUtil;
+import com.example.util.*;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -28,31 +28,48 @@ import java.util.List;
 public class BlogController {
     private Blog blog=new Blog();
     private List<Blog> list;
-    private Categories ca=new Categories();
+
 
     @Autowired
     public BlogService blogService;
 
-    @Autowired
-    public CategoriesService categoriesService;
+
 
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     @ResponseBody
-    public Result saveBlog(String title, String createTime, String profile, String context, HttpSession httpSession) {
-
-        System.out.println(context);
+    public Result saveBlog(String title, String createTime, String profile, String context, HttpSession httpSession,HttpServletRequest req) throws IOException {
+        String realpath = req.getSession().getServletContext().getRealPath("/WEB-INF/statics/blog/");
+        System.out.println(realpath);
+        String username= (String) httpSession.getAttribute("username");
+        String FileName= UUIDUtil.getUUID();
         User user=new User();
-
-        user.setUid((Integer)httpSession.getAttribute("username"));
+//        int realUid=Integer.parseInt(uid);
+        //user.setUid(realUid);
+        FileUtil.newFile(realpath,FileName,context);
         blog.setTitle(title);
         blog.setCreateTime(createTime);
-        blog.setUser(user);
+       // blog.setUser(user);
         blog.setFonts("未知");
-        //blogService.save(blog);
-        System.out.println(profile);
+        blog.setCategories(profile);
+        blog.setFileLocation(FileUtil.directory+FileName+".txt");
+        blogService.save(blog);
+        //System.out.println(profile);
         return ResultUtil.success(blog);
     }
 
+
+    @RequestMapping(value = "/categories/all",method = RequestMethod.POST)
+    @ResponseBody
+    public Result findAllCategories(){
+        list=blogService.findAllCategories();
+        System.out.println(list.toString());
+        if (list!=null){
+            return ResultUtil.success(list);
+        }else {
+            return ResultUtil.error();
+        }
+
+    }
     @RequestMapping(value = "/openBlog",method = RequestMethod.POST)
     @ResponseBody
     public Result openBlog(String title){
@@ -66,6 +83,7 @@ public class BlogController {
     public Result search(String searchText){
         list=blogService.findBlogs(searchText);
         if (list!=null){
+            System.out.println(list.toString());
             return  ResultUtil.success(list);
         }else {
             return ResultUtil.error();
@@ -80,7 +98,5 @@ public class BlogController {
     }
 
 
-    public void findAll(){
 
-    }
 }

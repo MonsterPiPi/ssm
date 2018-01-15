@@ -13,6 +13,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,6 +47,7 @@ public class BlogDaoImpl implements BlogDao {
     @SuppressWarnings("unchecked")
     public List<Blog> findBlogs(String searchText) {
         Criteria ctr=session.createCriteria(Blog.class);
+        ctr.add(Restrictions.like("title",searchText, MatchMode.ANYWHERE ));
         list= ctr.list();
         if(list.size() > 0) {
             return list;
@@ -53,7 +55,7 @@ public class BlogDaoImpl implements BlogDao {
             return null;
         }
     }
-
+    @SuppressWarnings("unchecked")
     public List<Blog> findAll() {
         String hql = "from Blog";
         Query query=session.createQuery(hql);
@@ -64,15 +66,21 @@ public class BlogDaoImpl implements BlogDao {
             return null;
         }
     }
+    @SuppressWarnings("unchecked")
+    public List<Blog> findAllCategories() {
+        String hql = "select categories from Blog";
+        Query query=session.createQuery(hql);
+        list= query.list();
+        if (list.size()>0){
+            return list;
+        }else {
+            return null;
+        }
+    }
+
+
     /**
-     *  Criteria ctr=session.createCriteria(Blog.class);
-     ctr.add(Restrictions.like("title",searchText, MatchMode.ANYWHERE ));
-     list= ctr.list();
-     if(list.size() > 0) {
-     return list;
-     }else{
-     return null;
-     }
+     *
      */
 
 }
