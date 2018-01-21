@@ -44,7 +44,7 @@ public class UserController {
     @RequestMapping(value = "/checkLoginEmail",method = RequestMethod.GET)
     @ResponseBody
     public Result checkLoginEmail(String email){
-        if(userService.findByEmail(email)){
+        if(userService.findByEmail(email)!=null){
 
             return ResultUtil.success();
         }else {
