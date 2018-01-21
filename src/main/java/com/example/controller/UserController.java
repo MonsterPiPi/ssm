@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import java.security.GeneralSecurityException;
-import java.util.List;
 
 
 /**
@@ -28,7 +27,6 @@ import java.util.List;
 public class UserController {
 
     private User user=new User();
-    private List<User> list;
 
     @Autowired
     private UserService userService;
@@ -46,7 +44,7 @@ public class UserController {
     @RequestMapping(value = "/checkLoginEmail",method = RequestMethod.GET)
     @ResponseBody
     public Result checkLoginEmail(String email){
-        if(userService.findByEmail(email)!=null){
+        if(userService.findByEmail(email)){
 
             return ResultUtil.success();
         }else {
@@ -81,13 +79,10 @@ public class UserController {
     @ResponseBody
     public Result findByEmailAndPassword(HttpSession httpSession, String email, String password) {
         User loginUser=userService.findByEmailAndPassword(email,password);
-        userService.findByEmail(email);
         if(loginUser!=null){
             //user会自己注入session中
             //将email放入session作用域中，这样转发页面也可以取到这个数据。
-            httpSession.setAttribute("user",loginUser);
             httpSession.setAttribute("username",loginUser.getNickName());
-            httpSession.setAttribute("user_id",loginUser.getUid());
             System.out.println(httpSession.getAttribute("username"));
             return ResultUtil.success();
         }else {
@@ -95,28 +90,14 @@ public class UserController {
         }
 
     }
-    @RequestMapping(value = "/exit",method = RequestMethod.POST)
+    @RequestMapping(value = "exit",method = RequestMethod.POST)
     @ResponseBody
     public Result exit(HttpSession session){
         session.removeAttribute("username");
         return ResultUtil.success();
     }
 
-    @RequestMapping(value = "/about",method = RequestMethod.GET)
-    @ResponseBody
-    public Result about(HttpSession httpSession){
-        User sessionUser= (User) httpSession.getAttribute("user");
-        if(sessionUser!=null){
-            user.setNickName(sessionUser.getNickName());
-            user.setJoinDate(sessionUser.getJoinDate());
-            user.setLocation(sessionUser.getLocation());
-            System.out.println("1111111111111"+"----"+sessionUser.getPassword());
-            return ResultUtil.success(user);
-        }else {
-            return ResultUtil.error();
-        }
 
-    }
     /**
      * 页面跳转控制
      * @return
