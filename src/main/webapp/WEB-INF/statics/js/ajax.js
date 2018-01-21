@@ -57,7 +57,7 @@ function userLogin(){
                 var data = JSON.parse(r);
                 console.log(data);
                 if (data.msg=="成功"){
-                    toHome();
+                    toIndex();
                 }else {
                     mdui.snackbar({
                         message: "登陆失败",
@@ -169,6 +169,9 @@ mdui.JQ('#example-prompt-3').on('click', function () {
         }
     );
 });
+function toIndex() {
+    window.location.href = '/mavenSpringMVC/home/toIndex';//
+}
 function toLogin() {
     window.location.href = '/mavenSpringMVC/user/toLogin';//跳转到登陆界面
 }
@@ -176,38 +179,110 @@ function toRegister() {
     window.location.href = '/mavenSpringMVC/user/toRegister';//跳转到注册界面
 }
 function toHome() {
-    window.location.href = '/mavenSpringMVC/home/toHome';//
+    $("#main").load( '/mavenSpringMVC/home/toHome');//
 }
 function toAbout() {
     $("#main").load("/mavenSpringMVC/home/toAbout");
-}
-function toCategories() {
-    $("#main").load("/mavenSpringMVC/home/toCategories");
     $.ajax({
-        type: "POST",
-        url: "/mavenSpringMVC/categories/all",
+        type: "GET",
+        url: "/mavenSpringMVC/user/about",
         data: {
         },
         dataType:"text",
         success:function (r) {
-            var html = "";
+            var data=JSON.parse(r);
+            console.log(data.data);
+            console.log(data.data);
+                        var user=data.data;
+
+                            html="  <div class=\"mdui-row\">\n" +
+                                "                            <br>\n" +
+                                "                            <img class=\"mdui-img-circle mdui-center\" width=\"100\" src=\"/mavenSpringMVC/image/avatar.jpg\"/>\n" +
+                                "                        </div>\n" +
+                                "                        <div class=\"mdui-typo\">\n" +
+                                "                            <hr/>\n" +
+                                "                        </div>\n" +
+                                "                        <div class=\"mdui-row\">\n" +
+                                "                            <ul class=\"mdui-list mdui-text-center\">\n" +
+                                "                                <li class=\"mdui-list-item mdui-ripple\">\n" +
+                                "                                    <div class=\"mdui-list-item-content\">\n" +
+                                "                                        <div class=\"mdui-list-item-title mdui-list-item-one-line\">"+user.nickName+"</div>\n" +
+                                "                                        <div class=\"mdui-list-item-text mdui-list-item-two-line\">You've got to get enough sleep. Other travelling salesmen live a life of luxury. You've got to get enough sleep. Other travelling salesmen live a life of luxury.</div>\n" +
+                                "                                    </div>\n" +
+                                "                                </li>\n" +
+                                "                                <li class=\"mdui-list-item mdui-ripple\">\n" +
+                                "                                    <div class=\"mdui-list-item-content\">\n" +
+                                "                                        <div class=\"mdui-list-item-title mdui-list-item-one-line\">"+user.location+"</div>\n" +
+                                "                                        <div class=\"mdui-list-item-text mdui-list-item-two-line\">You've got to get enough sleep. Other travelling salesmen live a life of luxury. You've got to get enough sleep. Other travelling salesmen live a life of luxury.</div>\n" +
+                                "                                    </div>\n" +
+                                "                                </li>\n" +
+                                "                                <li class=\"mdui-list-item mdui-ripple\">\n" +
+                                "                                    <div class=\"mdui-list-item-content\">\n" +
+                                "                                        <div class=\"mdui-list-item-title mdui-list-item-one-line\"><font color=\"#808080\">WeChat:Jeff07z1</font></div>\n" +
+                                "                                    </div>\n" +
+                                "                                </li>\n" +
+                                "                                <li class=\"mdui-list-item mdui-ripple\">\n" +
+                                "                                    <div class=\"mdui-list-item-content\">\n" +
+                                "                                        <div class=\"mdui-list-item-title mdui-list-item-one-line\"><font color=\"#808080\">Email:51103942@qq.com</font></div>\n" +
+                                "                                    </div>\n" +
+                                "                                </li>\n" +
+                                "                                <li class=\"mdui-list-item mdui-ripple\">\n" +
+                                "                                    <div class=\"mdui-list-item-content\">\n" +
+                                "                                        <div class=\"mdui-list-item-title mdui-list-item-one-line\"><font color=\"#808080\">Location:"+user.location+"</font></div>\n" +
+                                "                                    </div>\n" +
+                                "                                </li>\n" +
+                                "                                <li class=\"mdui-list-item mdui-ripple\">\n" +
+                                "                                    <div class=\"mdui-list-item-content\">\n" +
+                                "                                        <div class=\"mdui-list-item-title mdui-list-item-one-line\"><font color=\"#808080\">joinTime:"+user.joinDate+"</font></div>\n" +
+                                "                                    </div>\n" +
+                                "                                </li>\n" +
+                                "                            </ul>\n" +
+                                "                        </div>\n" +
+                                "                        <div class=\"mdui-typo\">\n" +
+                                "                            <hr/>\n" +
+                                "                        </div>\n" +
+                                "                        <div class=\"mdui-row\">\n" +
+                                "                            <div class=\"mdui-typo mdui-text-right\">\n" +
+                                "                                <blockquote>\n" +
+                                "                                    <p>Talk is cheap. Show me the code.</p>\n" +
+                                "                                    <footer>马尔克斯 ——《百年孤独》</footer>\n" +
+                                "                                </blockquote>\n" +
+                                "                            </div>\n" +
+                                "                        </div>";
+            $("#aboutMyself").html(html); //在html页面id=ulul的标签里显示html内
+            //alert(data.code)
+
+        },
+        error: function (err) {
+            mdui.snackbar({
+                message: "Ajax出了点问题",
+                position: 'right-bottom'
+            });
+        }
+    });
+}
+function toCategories() {
+    $("#main").load("/mavenSpringMVC/home/toCategories");
+    $.ajax({
+        type: "GET",
+        url: "/mavenSpringMVC/blog/categories/all",
+        data: {
+        },
+        dataType:"text",
+        success:function (r) {
+            var html1 = "";
             var data=JSON.parse(r);
             console.log(data);
             for(var i=0;i<data.data.length;i++){    //遍历data数组
                 var ls = data.data[i];
-                html+=
+                html1+=
                     "<li class=\"mdui-list-item mdui-ripple\">\n" +
                     "                        <div class=\"mdui-list-item-content\">\n" +
-                    "                            <div class=\"mdui-list-item-title\">"+ls.name+"</div>\n" +
-                    "                            <div class=\"mdui-list-item-text\">"+ls.createDate+"</div>\n" +
+                    "                            <div class=\"mdui-list-item-title\">"+ls+"</div>\n" +
                     "                        </div>\n" +
-                    "                        <label class=\"mdui-switch\">\n" +
-                    "                            <input type=\"checkbox\" />\n" +
-                    "                            <i class=\"mdui-switch-icon\"></i>\n" +
-                    "                        </label>\n" +
                     "                    </li>";
             }
-            $("#ulul").html(html); //在html页面id=ulul的标签里显示html内
+            $("#ulul").html(html1); //在html页面id=ulul的标签里显示html内
             $("#categoriesNumber").html(data.data.length);
             //alert(data.code)
         },
@@ -222,9 +297,20 @@ function toCategories() {
 function toBlog() {
     $("#main").load("/mavenSpringMVC/home/toBlog");
 }
+function toLockScreen() {
+    window.location.href = '/mavenSpringMVC/home/toLockScreen';//跳转到登陆界面
+}
 function loginSuccess() {
     mdui.snackbar({
         message: "登陆成功",
         position: 'right-bottom'
     });
 }
+function lockScreen() {
+        mdui.confirm('确定锁屏么?', '锁屏',
+                function(){
+                        mdui.alert('点击了确认按钮');
+                        toLockScreen();
+                    },
+            );
+    }

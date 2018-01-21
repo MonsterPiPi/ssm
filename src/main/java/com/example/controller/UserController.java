@@ -82,6 +82,7 @@ public class UserController {
         if(loginUser!=null){
             //user会自己注入session中
             //将email放入session作用域中，这样转发页面也可以取到这个数据。
+            httpSession.setAttribute("user",loginUser);
             httpSession.setAttribute("username",loginUser.getNickName());
             System.out.println(httpSession.getAttribute("username"));
             return ResultUtil.success();
@@ -97,7 +98,19 @@ public class UserController {
         return ResultUtil.success();
     }
 
-
+    @RequestMapping(value = "about",method = RequestMethod.GET)
+    @ResponseBody
+    public Result about(HttpSession session){
+        User sessionUser= (User) session.getAttribute("user");
+        user.setNickName(sessionUser.getNickName());
+        user.setLocation(sessionUser.getLocation());
+        user.setJoinDate(sessionUser.getJoinDate());
+        user.setEmail(sessionUser.getEmail());
+        user.setState(sessionUser.getState());
+        user.setPhone(user.getPhone());
+        user.setPhoto(user.getPhoto());
+        return ResultUtil.success(user);
+    }
     /**
      * 页面跳转控制
      * @return

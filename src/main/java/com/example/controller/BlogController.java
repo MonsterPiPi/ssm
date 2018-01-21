@@ -39,10 +39,10 @@ public class BlogController {
     public Result saveBlog(String title, String createTime, String profile, String context, HttpSession httpSession,HttpServletRequest req) throws IOException {
         //String realPath = req.getSession().getServletContext().getRealPath("/WEB-INF/statics/blog/");
         //System.out.println(realPath);
-        int user_id= (Integer) httpSession.getAttribute("user_id");
+        User sessionUser= (User) httpSession.getAttribute("user");
         String FileName= UUIDUtil.getUUID();
         User user=new User();
-        user.setUid(user_id);
+        user.setUid(sessionUser.getUid());
         FileUtil.newFile(FileUtil.directory,FileName,context);
         // FileUtil.newFile(FileUtil.directoryIdea,FileName,context);
         blog.setTitle(title);
