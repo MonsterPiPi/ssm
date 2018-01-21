@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User : 51103942@qq.com
@@ -30,9 +32,11 @@ public class UserServiceImpl implements UserService {
         return userDao.findByEmailAndPassword(email,password);
     }
 
-    public boolean findByEmail(String email) {
+    public User findByEmail(String email) {
         return userDao.findByEmail(email);
     }
+
+
 
 
 }

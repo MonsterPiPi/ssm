@@ -59,15 +59,15 @@ public class UserDaoImpl implements UserDao {
         }
     }
     @SuppressWarnings("unchecked")
-    public boolean findByEmail(String email) {
+    public User findByEmail(String email) {
         Criteria ctr=session.createCriteria(User.class);
         ctr.add(Restrictions.eq("email", email));
         list= ctr.list();
         if(list.size() > 0) {
             System.out.println(list.get(0).getNickName());
-            return true;
+            return list.get(0);
         }else{
-            return false;
+            return null;
         }
     }
 

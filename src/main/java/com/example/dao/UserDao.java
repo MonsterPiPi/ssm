@@ -1,6 +1,10 @@
 package com.example.dao;
 
-import com.example.pojo.User; /**
+import com.example.pojo.User;
+
+import java.util.List;
+
+/**
  * Created by IntelliJ IDEA.
  * User : 51103942@qq.com
  * Date : 2018/1/2
@@ -13,5 +17,6 @@ public interface UserDao {
 
     User findByEmailAndPassword(String email, String password);
 
-    boolean findByEmail(String email);
+    User findByEmail(String email);
+
 }

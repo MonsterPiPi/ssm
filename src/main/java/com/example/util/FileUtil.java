@@ -18,22 +18,23 @@ import java.io.IOException;
 public class FileUtil {
 
 
-    //src/main/webapp/WEB-INF/statics/blog/
-    public final static String directory="http://localhost:8080/mavenSpringMVC/blog/";
-
+    public final static String directory="C:\\Users\\DELL\\IdeaProjects\\mavenSpringMVC\\target\\mavenSpringMVC\\WEB-INF\\statics\\blog\\";
+    public final static String getDirectoryIdea="http://localhost:8080/mavenSpringMVC/blog/";
+    public final static String directoryIdea="src/main/webapp/WEB-INF/statics/blog/";
     @Test
-    public void TestSaveBlog(HttpServletRequest req) throws IOException {
-       //newFile("test","test the save blog");
-        //newFolder(directory);
+    public void TestSaveBlog() throws IOException {
+       //newFile(directoryIdea,"111","test the save blog");
+       // newFolder("test");
         //delFile(directory+"test.txt");
         //delFolder(directory);
+        //deleteFile("03ea9afbe59d4d11b6522b9e439e60f1.txt");
     }
 
     /**
      * 新建目录
      */
     public static void newFolder(String folderPath) {
-            String filePath = folderPath;
+            String filePath = directory+folderPath;
             filePath = filePath.toString();
             File myFilePath = new File(filePath);
             if(!myFilePath.exists()) {
@@ -74,11 +75,12 @@ public class FileUtil {
             System.out.println("保存成功 成功执行");
     }
 
+
     /**
      * 删除文件
      */
     public  static void deleteFile(String fileName) {
-            String filePath = directory+fileName+".txt";
+            String filePath = directory+fileName;
             filePath = filePath.toString();
             File myDelFile = new File(filePath);
             myDelFile.delete();

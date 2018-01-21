@@ -4,7 +4,6 @@ import com.example.pojo.Blog;
 import com.example.pojo.User;
 import com.example.service.BlogService;
 import com.example.util.*;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,17 +37,17 @@ public class BlogController {
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     @ResponseBody
     public Result saveBlog(String title, String createTime, String profile, String context, HttpSession httpSession,HttpServletRequest req) throws IOException {
-        String realpath = req.getSession().getServletContext().getRealPath("/WEB-INF/statics/blog/");
-        System.out.println(realpath);
-        String username= (String) httpSession.getAttribute("username");
+        //String realPath = req.getSession().getServletContext().getRealPath("/WEB-INF/statics/blog/");
+        //System.out.println(realPath);
+        int user_id= (Integer) httpSession.getAttribute("user_id");
         String FileName= UUIDUtil.getUUID();
         User user=new User();
-//        int realUid=Integer.parseInt(uid);
-        //user.setUid(realUid);
-        FileUtil.newFile(realpath,FileName,context);
+        user.setUid(user_id);
+        FileUtil.newFile(FileUtil.directory,FileName,context);
+        // FileUtil.newFile(FileUtil.directoryIdea,FileName,context);
         blog.setTitle(title);
         blog.setCreateTime(createTime);
-       // blog.setUser(user);
+        blog.setUser(user);
         blog.setFonts("未知");
         blog.setCategories(profile);
         blog.setFileLocation(FileUtil.directory+FileName+".txt");
@@ -58,7 +57,7 @@ public class BlogController {
     }
 
 
-    @RequestMapping(value = "/categories/all",method = RequestMethod.POST)
+    @RequestMapping(value = "/categories/all",method = RequestMethod.GET)
     @ResponseBody
     public Result findAllCategories(){
         list=blogService.findAllCategories();
