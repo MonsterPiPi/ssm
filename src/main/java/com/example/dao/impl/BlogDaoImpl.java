@@ -57,9 +57,9 @@ public class BlogDaoImpl implements BlogDao {
     }
     @SuppressWarnings("unchecked")
     public List<Blog> findAll() {
-        String hql = "from Blog";
+        String hql = "select title,createTime,fileLocation,fonts,categories,photo from Blog";
         Query query=session.createQuery(hql);
-        list=query.list();
+        list= query.list();
         if (list.size()>0){
             return list;
         }else {

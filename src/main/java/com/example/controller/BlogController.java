@@ -88,6 +88,17 @@ public class BlogController {
             return ResultUtil.error();
         }
     }
+    @RequestMapping(value="/all" ,method= RequestMethod.GET)
+    @ResponseBody
+    public Result all(){
+        list=blogService.findAll();
+        if (list!=null){
+            System.out.println(list.toString());
+            return ResultUtil.success(list);
+        }else {
+            return ResultUtil.error();
+        }
+    }
 
     @RequestMapping(value = "toOneBlog")
     public String toOneBlog(){

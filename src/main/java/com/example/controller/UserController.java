@@ -107,8 +107,8 @@ public class UserController {
         user.setJoinDate(sessionUser.getJoinDate());
         user.setEmail(sessionUser.getEmail());
         user.setState(sessionUser.getState());
-        user.setPhone(user.getPhone());
-        user.setPhoto(user.getPhoto());
+        user.setPhone(sessionUser.getPhone());
+        user.setPhoto(sessionUser.getPhoto());
         return ResultUtil.success(user);
     }
     /**

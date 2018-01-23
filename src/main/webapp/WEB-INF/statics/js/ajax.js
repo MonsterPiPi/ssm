@@ -179,7 +179,52 @@ function toRegister() {
     window.location.href = '/mavenSpringMVC/user/toRegister';//跳转到注册界面
 }
 function toHome() {
-    $("#main").load( '/mavenSpringMVC/home/toHome');//
+    $("#main").load( '/mavenSpringMVC/home/toHome');
+    $.ajax({
+        type: "GET",
+        url: "/mavenSpringMVC/blog/all",
+        data: {
+        },
+        dataType:"text",
+        success:function (r) {
+            var html = "";
+            var data=JSON.parse(r);
+            console.log(data);
+
+             for(var i=0;i<data.data.length;i++){    //遍历data数组
+                var ls = data.data[i];
+                html+=
+                    " <div class=\"mdui-panel-item\">\n" +
+                    "                <div class=\"mdui-panel-item-header\">\n" +
+                    "                    <div class=\"mdui-panel-item-title\">"+ls[0]+"</div>\n" +
+                    "                    <div class=\"mdui-panel-item-summary\">"+ls[1]+"</div>\n" +
+                    "                    <i class=\"mdui-panel-item-arrow mdui-icon material-icons\">keyboard_arrow_down</i>\n" +
+                    "                </div>\n" +
+                    "                <div class=\"mdui-panel-item-body\">\n" +
+                    "                    <p>First content</p>\n" +
+                    "                    <p>First content</p>\n" +
+                    "                    <p>First content</p>\n" +
+                    "                    <p>First content</p>\n" +
+                    "                    <p>First content</p>\n" +
+                    "                    <p>First content</p>\n" +
+                    "                    <div class=\"mdui-panel-item-actions\">\n" +
+                    "                        <button class=\"mdui-btn mdui-ripple\" mdui-panel-item-close>cancel</button>\n" +
+                    "                        <button class=\"mdui-btn mdui-ripple\">save</button>\n" +
+                    "                    </div>\n" +
+                    "                </div>\n" +
+                    "            </div>";
+            }
+             $("#listBlog").html(html); //在html页面id=ulul的标签里显示html内
+             $("#categoriesNumber").html(data.data.length);
+
+        },
+        error: function (err) {
+            mdui.snackbar({
+                message: "Ajax出了点问题",
+                position: 'right-bottom'
+            });
+        }
+    });
 }
 function toAbout() {
     $("#main").load("/mavenSpringMVC/home/toAbout");
@@ -212,18 +257,18 @@ function toAbout() {
                                 "                                </li>\n" +
                                 "                                <li class=\"mdui-list-item mdui-ripple\">\n" +
                                 "                                    <div class=\"mdui-list-item-content\">\n" +
-                                "                                        <div class=\"mdui-list-item-title mdui-list-item-one-line\">"+user.location+"</div>\n" +
+                                "                                        <div class=\"mdui-list-item-title mdui-list-item-one-line\">"+user.state+"</div>\n" +
                                 "                                        <div class=\"mdui-list-item-text mdui-list-item-two-line\">You've got to get enough sleep. Other travelling salesmen live a life of luxury. You've got to get enough sleep. Other travelling salesmen live a life of luxury.</div>\n" +
                                 "                                    </div>\n" +
                                 "                                </li>\n" +
                                 "                                <li class=\"mdui-list-item mdui-ripple\">\n" +
                                 "                                    <div class=\"mdui-list-item-content\">\n" +
-                                "                                        <div class=\"mdui-list-item-title mdui-list-item-one-line\"><font color=\"#808080\">WeChat:Jeff07z1</font></div>\n" +
+                                "                                        <div class=\"mdui-list-item-title mdui-list-item-one-line\"><font color=\"#808080\">Phone:"+user.phone+"</font></div>\n" +
                                 "                                    </div>\n" +
                                 "                                </li>\n" +
                                 "                                <li class=\"mdui-list-item mdui-ripple\">\n" +
                                 "                                    <div class=\"mdui-list-item-content\">\n" +
-                                "                                        <div class=\"mdui-list-item-title mdui-list-item-one-line\"><font color=\"#808080\">Email:51103942@qq.com</font></div>\n" +
+                                "                                        <div class=\"mdui-list-item-title mdui-list-item-one-line\"><font color=\"#808080\">Email:"+user.email+"</font></div>\n" +
                                 "                                    </div>\n" +
                                 "                                </li>\n" +
                                 "                                <li class=\"mdui-list-item mdui-ripple\">\n" +
@@ -270,19 +315,19 @@ function toCategories() {
         },
         dataType:"text",
         success:function (r) {
-            var html1 = "";
+            var html = "";
             var data=JSON.parse(r);
             console.log(data);
             for(var i=0;i<data.data.length;i++){    //遍历data数组
                 var ls = data.data[i];
-                html1+=
+                html+=
                     "<li class=\"mdui-list-item mdui-ripple\">\n" +
                     "                        <div class=\"mdui-list-item-content\">\n" +
                     "                            <div class=\"mdui-list-item-title\">"+ls+"</div>\n" +
                     "                        </div>\n" +
                     "                    </li>";
             }
-            $("#ulul").html(html1); //在html页面id=ulul的标签里显示html内
+            $("#ulul").html(html); //在html页面id=ulul的标签里显示html内
             $("#categoriesNumber").html(data.data.length);
             //alert(data.code)
         },
@@ -296,6 +341,7 @@ function toCategories() {
 }
 function toBlog() {
     $("#main").load("/mavenSpringMVC/home/toBlog");
+
 }
 function toLockScreen() {
     window.location.href = '/mavenSpringMVC/home/toLockScreen';//跳转到登陆界面
@@ -314,3 +360,8 @@ function lockScreen() {
                     },
             );
     }
+function exit() {
+
+
+
+}
