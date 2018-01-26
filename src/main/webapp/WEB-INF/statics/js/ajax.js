@@ -170,16 +170,16 @@ mdui.JQ('#example-prompt-3').on('click', function () {
     );
 });
 function toIndex() {
-    window.location.href = '/mavenSpringMVC/home/toIndex';//
+    window.location.href = '/mavenSpringMVC/home/index';//
 }
 function toLogin() {
-    window.location.href = '/mavenSpringMVC/user/toLogin';//跳转到登陆界面
+    window.location.href = '/mavenSpringMVC/user/login';//跳转到登陆界面
 }
 function toRegister() {
-    window.location.href = '/mavenSpringMVC/user/toRegister';//跳转到注册界面
+    window.location.href = '/mavenSpringMVC/user/register';//跳转到注册界面
 }
 function toHome() {
-    $("#main").load( '/mavenSpringMVC/home/toHome');
+    $("#main").load( '/mavenSpringMVC/home/home');
     $.ajax({
         type: "GET",
         url: "/mavenSpringMVC/blog/all",
@@ -209,7 +209,7 @@ function toHome() {
                     "                    <p>First content</p>\n" +
                     "                    <div class=\"mdui-panel-item-actions\">\n" +
                     "                        <button class=\"mdui-btn mdui-ripple\" mdui-panel-item-close>cancel</button>\n" +
-                    "                        <button class=\"mdui-btn mdui-ripple\">save</button>\n" +
+                    "                        <button class=\"mdui-btn mdui-ripple\" onclick=\"readBlog('"+ls[0]+"')\">Read</button>\n" +
                     "                    </div>\n" +
                     "                </div>\n" +
                     "            </div>";
@@ -226,8 +226,33 @@ function toHome() {
         }
     });
 }
+function readBlog(a) {
+    $("#main").load("/mavenSpringMVC/blog/one");
+    $.ajax({
+        type: "GET",
+        url: "/mavenSpringMVC/blog/openBlog",
+        data: {
+            bid:a
+        },
+        dataType:"text",
+        success:function (r) {
+            var data=JSON.parse(r);
+            console.log(data);
+            var html=data.data.fonts;
+            document.getElementById("text111").innerHTML = html;
+            //$("#aboutMyself").html(html); //在html页面id=ulul的标签里显示html内
+
+        },
+        error: function (err) {
+            mdui.snackbar({
+                message: "Ajax出了点问题",
+                position: 'right-bottom'
+            });
+        }
+    });
+}
 function toAbout() {
-    $("#main").load("/mavenSpringMVC/home/toAbout");
+    $("#main").load("/mavenSpringMVC/home/about");
     $.ajax({
         type: "GET",
         url: "/mavenSpringMVC/user/about",
@@ -236,7 +261,6 @@ function toAbout() {
         dataType:"text",
         success:function (r) {
             var data=JSON.parse(r);
-            console.log(data.data);
             console.log(data.data);
                         var user=data.data;
 
@@ -307,7 +331,7 @@ function toAbout() {
     });
 }
 function toCategories() {
-    $("#main").load("/mavenSpringMVC/home/toCategories");
+    $("#main").load("/mavenSpringMVC/home/categories");
     $.ajax({
         type: "GET",
         url: "/mavenSpringMVC/blog/categories/all",
@@ -340,11 +364,11 @@ function toCategories() {
     });
 }
 function toBlog() {
-    $("#main").load("/mavenSpringMVC/home/toBlog");
+    $("#main").load("/mavenSpringMVC/home/blog");
 
 }
 function toLockScreen() {
-    window.location.href = '/mavenSpringMVC/home/toLockScreen';//跳转到登陆界面
+    window.location.href = '/mavenSpringMVC/home/lockScreen';//跳转到登陆界面
 }
 function loginSuccess() {
     mdui.snackbar({
@@ -361,7 +385,11 @@ function lockScreen() {
             );
     }
 function exit() {
-
-
+    mdui.confirm('确定退出么?', '确定',
+        function(){
+            mdui.alert('点击了确认按钮');
+            toLockScreen();
+        },
+    );
 
 }

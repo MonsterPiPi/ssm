@@ -61,6 +61,7 @@ public class BlogController {
     @ResponseBody
     public Result findAllCategories(){
         list=blogService.findAllCategories();
+
         System.out.println(list.toString());
         if (list!=null){
             return ResultUtil.success(list);
@@ -69,11 +70,15 @@ public class BlogController {
         }
 
     }
-    @RequestMapping(value = "/openBlog",method = RequestMethod.POST)
+    @RequestMapping(value = "/openBlog",method = RequestMethod.GET)
     @ResponseBody
-    public Result openBlog(String title){
-        System.out.println(title);
-        return ResultUtil.success();
+    public Result openBlog(String bid) throws IOException {
+        System.out.println(bid);
+        Blog blog1=new Blog();
+        String fileLocation=blogService.findById(bid);
+        String blogText=FileUtil.readTxt(fileLocation);
+        blog1.setFonts(blogText);
+        return ResultUtil.success(blog1);
     }
 
 
@@ -100,11 +105,9 @@ public class BlogController {
         }
     }
 
-    @RequestMapping(value = "toOneBlog")
+    @RequestMapping(value = "one")
     public String toOneBlog(){
-        list=blogService.findAll();
-        System.out.println(list.toString());
-        return "test";
+        return "one";
     }
 
 

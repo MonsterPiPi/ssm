@@ -3,10 +3,7 @@ package com.example.util;
 import org.junit.Test;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -28,8 +25,25 @@ public class FileUtil {
         //delFile(directory+"test.txt");
         //delFolder(directory);
         //deleteFile("03ea9afbe59d4d11b6522b9e439e60f1.txt");
+        readTxt("C:\\Users\\DELL\\IdeaProjects\\mavenSpringMVC\\target\\mavenSpringMVC\\WEB-INF\\statics\\blog\\93214a7fce9940dca6898e69d64003c8.txt");
     }
 
+    public static String readTxt(String path) throws IOException {
+
+            String encoding = "GBK";
+            File file = new File(path);
+            String lineTxt = null;
+            if (file.isFile() && file.exists()) { // 判断文件是否存在
+                InputStreamReader read = new InputStreamReader(new FileInputStream(file), encoding);// 考虑到编码格式
+                BufferedReader bufferedReader = new BufferedReader(read);
+
+                while ((lineTxt = bufferedReader.readLine()) != null) {
+                    System.out.println(lineTxt);
+                }
+                read.close();
+            }
+        return lineTxt;
+    }
     /**
      * 新建目录
      */

@@ -16,32 +16,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/home")
 public class HomeController {
 
-    @RequestMapping(value = "toIndex",method = RequestMethod.GET)
+    @RequestMapping(value = "index",method = RequestMethod.GET)
     public String toIndex(){
         return "index";
     }
 
-    @RequestMapping(value = "/toHome",method = RequestMethod.GET)
+    @RequestMapping(value = "/home",method = RequestMethod.GET)
     public String toHome(){
         return "home";
     }
 
-    @RequestMapping(value = "/toAbout",method = RequestMethod.GET)
+    @RequestMapping(value = "/about",method = RequestMethod.GET)
     public String toAbout(){
         return "about";
     }
 
-    @RequestMapping(value = "/toCategories",method = RequestMethod.GET)
+    @RequestMapping(value = "/categories",method = RequestMethod.GET)
     public String toCategories(){
         return "categories";
     }
 
-    @RequestMapping(value = "/toBlog",method = RequestMethod.GET)
+    @RequestMapping(value = "/blog",method = RequestMethod.GET)
     public String toBlog(){
         return "blog";
     }
 
-    @RequestMapping(value = "/toLockScreen",method = RequestMethod.GET)
+    @RequestMapping(value = "/lockScreen",method = RequestMethod.GET)
     public String toLockScreen(){
         return "lockScreen";
     }

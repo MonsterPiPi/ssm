@@ -57,7 +57,7 @@ public class BlogDaoImpl implements BlogDao {
     }
     @SuppressWarnings("unchecked")
     public List<Blog> findAll() {
-        String hql = "select title,createTime,fileLocation,fonts,categories,photo from Blog";
+        String hql = "select bid,title,createTime,fileLocation,fonts,categories,photo from Blog";
         Query query=session.createQuery(hql);
         list= query.list();
         if (list.size()>0){
@@ -73,6 +73,20 @@ public class BlogDaoImpl implements BlogDao {
         list= query.list();
         if (list.size()>0){
             return list;
+        }else {
+            return null;
+        }
+    }
+    @SuppressWarnings("unchecked")
+    public String findById(String bid) {
+        int id=Integer.valueOf(bid);
+        List<String> list1;
+        String hql = "select fileLocation from Blog where bid ="+id;
+        Query query=session.createQuery(hql);
+        list1= query.list();
+        if (list.size()>0){
+            System.out.println(list1.get(0));
+            return list1.get(0);
         }else {
             return null;
         }

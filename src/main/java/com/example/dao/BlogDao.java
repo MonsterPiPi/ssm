@@ -21,4 +21,6 @@ public interface BlogDao {
 
 
     List<Blog> findAllCategories();
+
+    String findById(String bid);
 }

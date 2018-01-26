@@ -21,4 +21,6 @@ public interface BlogService {
 
 
     List<Blog> findAllCategories();
+
+    String findById(String bid);
 }

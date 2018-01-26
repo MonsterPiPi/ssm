@@ -39,5 +39,9 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.findAllCategories();
     }
 
+    public String findById(String bid) {
+        return blogDao.findById(bid);
+    }
+
 
 }
