@@ -2,7 +2,6 @@ package com.example.dao;
 
 import com.example.bean.Position;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Repository;
 
 /**
  * Created by LiQian_Nice on 2018/2/10

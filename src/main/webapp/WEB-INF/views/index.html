@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
@@ -9,6 +9,32 @@
     <title>HAHA</title>
 </head>
 <body>
-111
+<form action="">
+    编号：<input type="text" name="number" id="number">
+    <button onclick="search();">搜索 </button>
+</form>
+
 </body>
+
+<script  type="text/javascript" src="/demo/js/jquery-3.2.1.min.js"/>
+<script src="//mdui-aliyun.cdn.w3cbus.com/source/dist/js/mdui.min.js?v=0.4.0"></script>
+<script type="text/javascript">
+    function search() {
+        var id = $("#number").val();
+        
+        $.ajax({
+            url : "/demo/position/"+id,
+            type : "GET",
+            dataType : "json",
+            success : function (data) {
+                console.log(data);
+                if (data.name != null){
+                    alert("你查询的职位是："+data.name);
+                } else {
+                    alert("没有找到id为："+id+"职位");
+                }
+            }
+        });
+    }
+</script>
 </html>

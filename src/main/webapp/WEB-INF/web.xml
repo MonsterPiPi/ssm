@@ -51,4 +51,6 @@
         <servlet-name>springMVC</servlet-name>
         <url-pattern>/</url-pattern><!--映射根路径-->
     </servlet-mapping>
+
+
 </web-app>
