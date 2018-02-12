@@ -2,6 +2,8 @@ package com.example.service;
 
 import com.example.bean.Position;
 
+import java.util.List;
+
 /**
  * Created by LiQian_Nice on 2018/2/10
  *
@@ -9,7 +11,26 @@ import com.example.bean.Position;
  */
 public interface IPositionService {
     /**
-     * 通过id查找某一职位信息
+     * 添加职位
      */
-    public Position getPositionById(int positionId);
+    boolean addPosition(Position position);
+
+    /**
+     * 通过id查找某一职位
+     */
+    Position getPositionById(int positionId);
+
+    /**
+     * 获取全部职位信息
+     */
+    List<Position> getAllPosition();
+    /**
+     * 根据id删除某一职位
+     */
+    void deletePosition(int positionId);
+
+    /**
+     * 更新职位信息
+     */
+    void update(Position position);
 }

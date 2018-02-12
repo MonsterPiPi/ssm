@@ -1,6 +1,6 @@
 ## 学生网上选课系统
 
-=============
+
 
 #### 环境配置
 
@@ -9,7 +9,6 @@
  - Tomcat: 9.0.0
  - 开发工具: IntellJ IDEA
 
-----------
 
 
 #### 项目进度
@@ -22,8 +21,11 @@
  - 2018/2/12, 使用RESTful风格规范，测试Ajax，页面输出json数据。
     
     > 使用@ResponseBody注解，需依次导入jackson-databind，jackson-core，jackson-annotations三个jar包，才能在页面上输出json数据
-    >
-    > 关于IDEA关于Ajax美元等符号识别不出来的问题，经发现，在项目中导入含有jquery.min.js的jar包，可以解决
+ - 2018/2/13, mybatis增删改查的实现
+       
+    > 使用注解的方式，注意SQL语句空格，否则会有语法错误。
+      
+ 
 
 
 

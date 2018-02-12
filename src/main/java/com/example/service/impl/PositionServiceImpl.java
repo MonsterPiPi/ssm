@@ -6,6 +6,7 @@ import com.example.service.IPositionService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by LiQian_Nice on 2018/2/10
@@ -19,8 +20,28 @@ public class PositionServiceImpl implements IPositionService {
     private IPositionDao positionDao;
 
     @Override
+    public boolean addPosition(Position position) {
+        return positionDao.addPosition(position);
+    }
+
+    @Override
     public Position getPositionById(int positionId) {
 
-        return this.positionDao.getPositionById(positionId);
+        return positionDao.getPositionById(positionId);
+    }
+
+    @Override
+    public List<Position> getAllPosition() {
+        return positionDao.getAllPosition();
+    }
+
+    @Override
+    public void deletePosition(int positionId) {
+        positionDao.deletePosition(positionId);
+    }
+
+    @Override
+    public void update(Position position) {
+        positionDao.update(position);
     }
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 职位控制器
  */
 @Controller
+@RequestMapping(value = "position")
 public class PositionCotroller {
 
 
@@ -33,11 +34,15 @@ public class PositionCotroller {
     /**
      * 接收RESTful风格的请求，其接收方式为GET
      */
-    @RequestMapping(value = "/position/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
     @ResponseBody
     public Position selectPosition(@PathVariable("id") int id) {
         //查看数据的接收
         logger.info("id="+id);
+        Position position1=new Position();
+        position1.setName("asasa");
+        position1.setDescription("sadsadas");
+        positionService.deletePosition(2);
         Position position =positionService.getPositionById(id);
         return position;
     }
