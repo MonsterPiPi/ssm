@@ -24,6 +24,7 @@ public class PositionCotroller {
 
 
     private static Logger logger = LoggerFactory.getLogger(PositionCotroller.class);
+
     @Autowired
     private IPositionService positionService;
     @RequestMapping(value = "/index",method = RequestMethod.GET)
