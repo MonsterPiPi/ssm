@@ -9,7 +9,7 @@ public class Stuuser {
     /**
      * 学生编号
      */
-    private int id;
+    private String id;
     /**
      * 学生姓名
      */
@@ -22,7 +22,7 @@ public class Stuuser {
     /**
      * 专业编号
      */
-    private int specialtyId;
+    private String specialtyId;
 
     /**
      * 性别
@@ -49,11 +49,11 @@ public class Stuuser {
      */
     private String addr;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -73,11 +73,11 @@ public class Stuuser {
         this.stuNo = stuNo;
     }
 
-    public int getSpecialtyId() {
+    public String getSpecialtyId() {
         return specialtyId;
     }
 
-    public void setSpecialtyId(int specialtyId) {
+    public void setSpecialtyId(String specialtyId) {
         this.specialtyId = specialtyId;
     }
 

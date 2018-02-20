@@ -16,10 +16,10 @@ import javax.annotation.Resource;
 public class StuuserServiceImpl implements IStuuserService{
 
     @Resource
-    private IStuuserDao iStuuserDao;
+    private IStuuserDao stuuserDao;
 
     @Override
     public boolean addStuuser(Stuuser stuuser) {
-        return iStuuserDao.addStuuser(stuuser);
+        return stuuserDao.addStuuser(stuuser);
     }
 }
