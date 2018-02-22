@@ -27,10 +27,7 @@ public class PositionCotroller {
 
     @Autowired
     private IPositionService positionService;
-    @RequestMapping(value = "/index",method = RequestMethod.GET)
-    public  String index(){
-        return "index";
-    }
+
 
     /**
      * 接收RESTful风格的请求，其接收方式为GET
@@ -43,7 +40,7 @@ public class PositionCotroller {
         Position position1=new Position();
         position1.setName("asasa");
         position1.setDescription("sadsadas");
-        positionService.deletePosition(2);
+        //positionService.deletePosition(2);
         Position position =positionService.getPositionById(id);
         return position;
     }
