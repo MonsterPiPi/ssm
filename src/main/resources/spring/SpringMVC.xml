@@ -31,4 +31,5 @@
     <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
     <mvc:resources mapping="/mdui/**" location="/WEB-INF/statics/mdui/"></mvc:resources>
+    <mvc:resources mapping="/images/**" location="/WEB-INF/statics/images/"></mvc:resources>
 </beans>

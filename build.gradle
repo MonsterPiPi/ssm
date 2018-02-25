@@ -29,6 +29,12 @@ dependencies {
     // spring测试包
     compile group: 'org.springframework', name: 'spring-test', version: '4.3.13.RELEASE'
 
+    // https://mvnrepository.com/artifact/org.springframework/spring-context-support
+    compile group: 'org.springframework', name: 'spring-context-support', version: '4.3.13.RELEASE'
+
+    // https://mvnrepository.com/artifact/net.sf.ehcache/ehcache
+    compile group: 'net.sf.ehcache', name: 'ehcache', version: '2.10.4'
+
     // 日志记录 1.7.25
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
 

@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.bean.Position;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public interface IPositionService {
     /**
      * 通过id查找某一职位
      */
+    @Cacheable(value = { "menuCache" })
     Position getPositionById(int positionId);
 
     /**
