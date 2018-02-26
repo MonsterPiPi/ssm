@@ -12,4 +12,6 @@ import java.util.List;
 public interface ISpecialtyService {
 
     List<Specialty> getAllSpecialty();
+
+    void addSpecialty(Specialty specialty);
 }

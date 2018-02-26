@@ -31,7 +31,7 @@ import javax.validation.Valid;
  */
 @RequestMapping("/users")
 @Controller
-@Api(value = "/users", tags = "登陆用户的接口",description = "登陆用户的接口")
+@Api(value = "登陆用户的接口", tags = {"登陆用户的接口"},description = "登陆用户的接口")
 public class UserloginController {
 
     private static Logger logger= LoggerFactory.getLogger(UserloginController.class);

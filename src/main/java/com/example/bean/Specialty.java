@@ -1,5 +1,7 @@
 package com.example.bean;
 
+import java.util.List;
+
 /**
  * Created by LiQian_Nice on 2018/2/19
  *
@@ -26,6 +28,10 @@ public class Specialty {
      * 是否结业
      */
     private int isFinish;
+
+    //1对多，1个专业多个学生
+    private List<Stuuser> stuuserList;
+
 
     public String getId() {
         return id;
@@ -65,5 +71,13 @@ public class Specialty {
 
     public void setIsFinish(int isFinish) {
         this.isFinish = isFinish;
+    }
+
+    public List<Stuuser> getStuuserList() {
+        return stuuserList;
+    }
+
+    public void setStuuserList(List<Stuuser> stuuserList) {
+        this.stuuserList = stuuserList;
     }
 }

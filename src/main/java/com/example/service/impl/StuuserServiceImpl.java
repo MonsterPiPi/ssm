@@ -6,6 +6,7 @@ import com.example.service.IStuuserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by LiQian_Nice on 2018/2/17
@@ -19,7 +20,12 @@ public class StuuserServiceImpl implements IStuuserService{
     private IStuuserDao stuuserDao;
 
     @Override
-    public boolean addStuuser(Stuuser stuuser) {
-        return stuuserDao.addStuuser(stuuser);
+    public void addStuuser(Stuuser stuuser) {
+         stuuserDao.addStuuser(stuuser);
+    }
+
+    @Override
+    public List<String> findSameSpecialtyStuuser(String name) {
+        return stuuserDao.findSameSpecialtyStuuser(name);
     }
 }

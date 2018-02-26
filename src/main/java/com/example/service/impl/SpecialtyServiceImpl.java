@@ -23,4 +23,9 @@ public class SpecialtyServiceImpl implements ISpecialtyService {
     public List<Specialty> getAllSpecialty() {
         return specialtyDao.getAllSpecialty();
     }
+
+    @Override
+    public void addSpecialty(Specialty specialty) {
+        specialtyDao.addSpecialty(specialty);
+    }
 }

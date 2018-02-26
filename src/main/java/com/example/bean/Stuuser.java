@@ -49,6 +49,9 @@ public class Stuuser {
      */
     private String addr;
 
+    //多对一，1个专业多个学生
+    private Specialty specialty;
+
     public String getId() {
         return id;
     }
@@ -119,5 +122,13 @@ public class Stuuser {
 
     public void setAddr(String addr) {
         this.addr = addr;
+    }
+
+    public Specialty getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(Specialty specialty) {
+        this.specialty = specialty;
     }
 }

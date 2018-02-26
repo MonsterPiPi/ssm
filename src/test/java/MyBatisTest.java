@@ -15,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -48,19 +49,27 @@ public class MyBatisTest {
     @Test
     public void addUser(){
         Stuuser stuuser=new Stuuser();
-        stuuser.setId("11");
-        stuuser.setStuName("111");
-        stuuser.setAddr("111");
-        stuuser.setBirthday("111");
-        stuuser.setHomeAddr("111");
-        stuuser.setStuNo("111");
-        stuuser.setStuSex("111");
-        stuuser.setTel("111");
-        stuuser.setSpecialtyId("1");
+        stuuser.setId("33");
+        stuuser.setStuName("222");
+        stuuser.setAddr("222");
+        stuuser.setBirthday("222");
+        stuuser.setHomeAddr("222");
+        stuuser.setStuNo("222");
+        stuuser.setStuSex("222");
+        stuuser.setTel("222");
+        stuuser.setSpecialtyId("2");
 
-        boolean flag=stuuserDao.addStuuser(stuuser);
-        logger.info("----------",flag);
+        stuuserDao.addStuuser(stuuser);
+        logger.info("----------");
 
+    }
+    @Test
+    public void findSameSpecialtyStuuser(){
+        List<String> strings=new ArrayList<>();
+        strings=stuuserDao.findSameSpecialtyStuuser("1");
+        for(String string:strings){
+            logger.info("----------"+string.toString()) ;
+        }
     }
     @Test
     public void getAllCourse(){
@@ -75,6 +84,15 @@ public class MyBatisTest {
         for (Specialty specialty:list){
             logger.info("----------"+specialty.getName());
         }
+    }
+    @Test
+    public void addSpecialty(){
+        Specialty specialty=new Specialty();
+        specialty.setName("测试");
+        specialty.setEnterYear("none");
+        specialty.setIsFinish(1);
+        specialty.setLangthYear("4");
+        specialtyDao.addSpecialty(specialty);
     }
 
     @Test

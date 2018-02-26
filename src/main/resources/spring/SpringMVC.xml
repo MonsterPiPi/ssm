@@ -7,8 +7,6 @@
 
 
 
-
-
     <!--  静态资源交给默认的Servlet-->
     <mvc:default-servlet-handler/>
     <!-- 开启SpringMVC注解模式 -->
