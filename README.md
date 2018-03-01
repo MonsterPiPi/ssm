@@ -1,33 +1,101 @@
 ## 学生网上选课系统
 
-
-
 #### 环境配置
-
  - Java: 1.8
  - Gradle: 4.4.1
  - Tomcat: 9.0.0
  - 开发工具: IntellJ IDEA
+### 后端技术
+
+| 技术        | 名称   |  官网  |
+| --------   | ---------:  | :---------------------:  |
+| Spring Framework     | 容器 | http://projects.spring.io/spring-framework/     |
+| SpringMVC        |   MVC框架   |   http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#mvc   |
+| MyBatis        |    ORM框架    |  	http://www.mybatis.org/mybatis-3/zh/index.html  |
+| PageHelper     |MyBatis物理分页插件|http://git.oschina.net/free/Mybatis_PageHelper|
+|HikariCP|数据库连接池|http://brettwooldridge.github.io/HikariCP/|	
+|Ehcache|进程内缓存框架|http://www.ehcache.org/|
+|Slf4j|日志组件|https://www.slf4j.org|
+|logback|日志组件|https://logback.qos.ch|
+|Swagger2|接口测试框架|http://swagger.io/|
+|Gradle|项目管理工具|https://gradle.org|
+|...|...|...|
+
+### 前端技术
+
+|技术|名称|官网|
+|---|----|----|
+|jquery|函式库|http://jquery.com/|
+|MDUI|前端响应式框架|https://www.mdui.org|
+|...|...|...|
+
+##### 所需jar包
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile group: 'junit', name: 'junit', version: '4.12'
+    //spring 系列包 4.4.13
+    // spring mvc
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.13.RELEASE'
+    // spring 核心包
+    compile group: 'org.springframework', name: 'spring-core', version: '4.3.13.RELEASE'
+    // spring beans
+    compile group: 'org.springframework', name: 'spring-beans', version: '4.3.13.RELEASE'
+    // spring 上下文
+    compile group: 'org.springframework', name: 'spring-context', version: '4.3.13.RELEASE'
+    // spring web
+    compile group: 'org.springframework', name: 'spring-web', version: '4.3.13.RELEASE'
+    // spring orm
+    compile group: 'org.springframework', name: 'spring-orm', version: '4.3.13.RELEASE'
+    // spring测试包
+    compile group: 'org.springframework', name: 'spring-test', version: '4.3.13.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-context-support
+    compile group: 'org.springframework', name: 'spring-context-support', version: '4.3.13.RELEASE'
+
+    // https://mvnrepository.com/artifact/net.sf.ehcache/ehcache
+    compile group: 'net.sf.ehcache', name: 'ehcache', version: '2.10.4'
+
+    // 日志记录 1.7.25
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
 
 
 
-#### 项目进度
+    // 数据库连接 5.1.38
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.38'
 
- - 2018/2/11, 完成项目环境的搭建，三大框架的整合。
-      
-    > 连接池更换为**HikariCP**,相比较c3p0,druid性能有很大提升。启动速度由9,458 milliseconds缩短到4,875 milliseconds
-    >
-    > 使用**Slf4j+logback**配置日志框架
- - 2018/2/12, 使用RESTful风格规范，测试Ajax，页面输出json数据。
-    
-    > 使用@ResponseBody注解，需依次导入jackson-databind，jackson-core，jackson-annotations三个jar包，才能在页面上输出json数据
- - 2018/2/13, mybatis增删改查的实现
-       
-    > 使用注解的方式，注意SQL语句空格，否则会有语法错误。
-      
- - 2018/2/17,数据库结构完善
+    // 数据库连接池 2.7.7
+    compile group: 'com.zaxxer', name: 'HikariCP', version: '2.7.7'
 
-        /*
+    // spring与Mybatis整合 1.3.0
+    compile group: 'org.mybatis', name: 'mybatis-spring', version: '1.3.0'
+
+    // mybatis 3.4.1
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.4.1'
+
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    //compile group: 'com.google.code.gson', name: 'gson', version: '2.3.1'
+
+    // 页面输出json数据所需jar包
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.0'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.0'
+
+    // swagger2所需jar包
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
+
+    //注解@Validator 所需jar包
+
+    compile group: 'javax.validation', name: 'validation-api', version: '1.1.0.Final'
+    compile group: 'org.apache.bval', name: 'bval-jsr303', version: '0.5'
+
+    //email
+    compile group: 'javax.mail', name: 'mail', version: '1.4.7'
+
+
+##### 数据库设计
+
+
+    /*
         Navicat MySQL Data Transfer
         
         Source Server         : localhost_3306
@@ -158,6 +226,21 @@
         -- ----------------------------
         SET FOREIGN_KEY_CHECKS=1;
 
+#### 项目进度
+
+ - 2018/2/11, 完成项目环境的搭建，三大框架的整合。
+      
+    > 连接池更换为**HikariCP**,相比较c3p0,druid性能有很大提升。启动速度由9,458 milliseconds缩短到4,875 milliseconds
+    >
+    > 使用**Slf4j+logback**配置日志框架
+ - 2018/2/12, 使用RESTful风格规范，测试Ajax，页面输出json数据。
+    
+    > 使用@ResponseBody注解，需依次导入jackson-databind，jackson-core，jackson-annotations三个jar包，才能在页面上输出json数据
+ - 2018/2/13, mybatis增删改查的实现
+       
+    > 使用注解的方式，注意SQL语句空格，否则会有语法错误。
+      
+ - 2018/2/17,数据库结构完善
  - 2018/2/19, 数据库实体类创建完成，Dao层，Service层，Controller创建完成
        
     > 业务逻辑，数据库操作语句并没有写完善，测试语句完善。
