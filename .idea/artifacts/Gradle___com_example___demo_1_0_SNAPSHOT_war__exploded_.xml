@@ -22,6 +22,7 @@
           <element id="library" level="project" name="Gradle: org.springframework:spring-web:4.3.13.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-orm:4.3.13.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-test:4.3.13.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-context-support:4.3.13.RELEASE" />
           <element id="library" level="project" name="Gradle: io.springfox:springfox-swagger2:2.7.0" />
           <element id="library" level="project" name="Gradle: io.springfox:springfox-swagger-common:2.7.0" />
           <element id="library" level="project" name="Gradle: io.springfox:springfox-swagger-ui:2.7.0" />
@@ -63,7 +64,8 @@
           <element id="library" level="project" name="Gradle: commons-beanutils:commons-beanutils-core:1.8.3" />
           <element id="library" level="project" name="Gradle: net.bytebuddy:byte-buddy:1.6.14" />
           <element id="library" level="project" name="Gradle: org.javassist:javassist:3.21.0-GA" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context-support/4.3.13.RELEASE/60ad53ac3e972e36757fa59fe0a91ceeb4ea98be/spring-context-support-4.3.13.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4.7/9add058589d5d85adeb625859bf2c5eeaaedf12d/mail-1.4.7.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1/e6cb541461c2834bdea3eb920f1884d1eb508b50/activation-1.1.jar" />
         </element>
       </element>
     </root>
