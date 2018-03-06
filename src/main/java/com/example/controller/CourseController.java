@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @RequestMapping("courses")
 @Controller
-@Api(value = "学生课程接口", tags = {"学生课程接口"},description = "学生课程接口")
+@Api(value = "课程管理接口", tags = {"课程管理接口"},description = "课程管理接口")
 public class CourseController {
 
     private static Logger logger= LoggerFactory.getLogger(CourseController.class);

@@ -10,7 +10,7 @@
 ##### 后端技术
 
 | 技术        | 名称   |  官网  |
-| --------   | ---------:  | :---------------------:  |
+| --------------   | ---------:  | :---------------------:  |
 | Spring Framework     | 容器 | http://projects.spring.io/spring-framework/     |
 | SpringMVC        |   MVC框架   |   http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#mvc   |
 | MyBatis        |    ORM框架    |  	http://www.mybatis.org/mybatis-3/zh/index.html  |

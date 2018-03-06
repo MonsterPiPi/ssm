@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by LiQian_Nice on 2018/2/19
@@ -38,22 +39,38 @@ public class UserloginController {
 
     @Autowired
     private IUserloginService userloginService;
+
     @GetMapping("/index")
     @ApiOperation(value = "测试页面跳转", notes = "测试页面跳转", httpMethod = "GET")
     public  String index(){
         return "userLogin";
     }
+
     @GetMapping("/")
     @ResponseBody
     @ApiOperation(value = "获取全部用户列表", notes = "获取全部用户列表", httpMethod = "GET", response = Userlogin.class)
     public Result findAll(){
-        return ResultUtil.success();
+        List<Userlogin> list=userloginService.findAll();
+        if (list!=null){
+            return ResultUtil.success(list);
+        }else {
+            return ResultUtil.error(0001,"未知错误");
+        }
+
     }
     @PostMapping("/{userlogin}")
     @ResponseBody
     @ApiOperation(value = "添加一位用户", notes = "添加一位用户", httpMethod = "POST", response = Userlogin.class)
     public Result add(@Valid Userlogin userlogin,BindingResult bindingResult){
-        return ResultUtil.success();
+
+        logger.info(userlogin.getId());//测试是否获取到用户信息
+        if (userlogin!=null){
+            userloginService.add(userlogin);
+            return ResultUtil.success();
+        }else {
+            return ResultUtil.error(1, "用户信息不完全");
+        }
+
     }
     @GetMapping("/{id}")
     @ResponseBody
@@ -61,41 +78,60 @@ public class UserloginController {
     public Result findById(@PathVariable("id") String id){
         //bindingResult 必须紧跟在被验证参数后头，规定如此的.例如@Valid Userlogin userlogin1, BindingResult bindingResult
         //ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
-        logger.info(id);
-        Userlogin userlogin=new Userlogin();
-        userlogin.setId("1");
-        userlogin.setLoginName("李前");
-        userlogin.setPwd("111");
-        userlogin.setType("管理员");
-        userlogin.setMail("51103942@qq.com");
-        return ResultUtil.success(userlogin);
+        logger.info(id);//测试id是否输入进去
+        if (id!=null){
+            Userlogin userlogin=userloginService.findById(id);
+            return ResultUtil.success(userlogin);
+        }else {
+            return ResultUtil.error(1,"id不能为空");
+        }
+
     }
-    @PutMapping("/{id}")
+    @PutMapping("/{userlogin}")
     @ResponseBody
-    @ApiOperation(value = "根据id更新一位用户信息", notes = "根据id更新用户信息", httpMethod = "PUT", response = Userlogin.class)
-    public Result update(@PathVariable("id") String id){
-        //bindingResult 必须紧跟在被验证参数后头，规定如此的.例如@Valid Userlogin userlogin1, BindingResult bindingResult
-        //ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
+    @ApiOperation(value = "更新一位用户信息", notes = "更新用户信息", httpMethod = "PUT", response = Userlogin.class)
+    public Result update(@Valid Userlogin userlogin){
+        userloginService.update(userlogin);
         return ResultUtil.success();
     }
     @DeleteMapping("/{id}")
     @ResponseBody
     @ApiOperation(value = "根据id删除一位用户", notes = "根据id删除一位用户", httpMethod = "DELETE", response = Userlogin.class)
     public Result delete(@PathVariable("id") String id){
-        //bindingResult 必须紧跟在被验证参数后头，规定如此的.例如@Valid Userlogin userlogin1, BindingResult bindingResult
-        //ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
-        return ResultUtil.success();
+        if (id!=null){
+            userloginService.delete(id);
+            return ResultUtil.success();
+        }else {
+            return ResultUtil.error(1,"id不能为空");
+        }
+
     }
     @GetMapping("/type/{type}")
     @ResponseBody
     @ApiOperation(value = "根据type获取用户列表", notes = "根据type获取用户列表", httpMethod = "GET", response = Userlogin.class)
     public Result getAllByType(@PathVariable("type") String type){
-        return ResultUtil.success();
+
+        if (type!=null){
+            List<Userlogin> list=userloginService.getAllByType(type);
+            if (list==null&&list.size()==0){
+                return ResultUtil.error(1,"类型不存在");
+            }else {
+                return ResultUtil.success(list);
+            }
+        }else {
+            return ResultUtil.error(1,"type不能为空");
+        }
     }
     @GetMapping("/getType/{id}")
     @ResponseBody
     @ApiOperation(value = "根据id查询用户类型", notes = "根据id查询用户类型", httpMethod = "GET", response = Userlogin.class)
     public Result getTypeById(@PathVariable("id") String id){
-        return ResultUtil.success();
+        if (id!=null){
+            String type=userloginService.getTypeById(id);
+            return ResultUtil.success(type);
+        }else {
+            return ResultUtil.error(1,"id不能为空");
+        }
+
     }
 }
