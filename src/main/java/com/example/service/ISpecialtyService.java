@@ -11,7 +11,28 @@ import java.util.List;
  */
 public interface ISpecialtyService {
 
-    List<Specialty> getAllSpecialty();
+    /**
+     * 查询所有专业
+     */
+    List<Specialty> findAll();
 
-    void addSpecialty(Specialty specialty);
+    /**
+     * 根据名字查询相同专业
+     */
+    List<Specialty> findAllByName(String name);
+
+    /**
+     * 添加一个专业
+     */
+    void add(Specialty specialty);
+
+    /**
+     * 删除一个专业
+     */
+    void delete(String id);
+
+    /**
+     * 更新一个专业
+     */
+    void update(Specialty specialty);
 }

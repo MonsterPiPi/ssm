@@ -16,6 +16,15 @@
         <result column="teacherInfo" jdbcType="VARCHAR" property="teacherInfo"/>
         <result column="isFinish" jdbcType="INTEGER" property="isFinish"/>
         <result column="specialtyId" jdbcType="INTEGER" property="specialtyId"/>
-
+        <!-- property是Course实体类中specialty类属性的名字
+              多个学生对应1个专业-->
+        <association property="specialty"
+                     javaType="com.example.bean.Specialty">
+            <id  column="id" javaType="java.lang.Integer" property="id"/>
+            <result column="enterYear" jdbcType="VARCHAR" property="enterYear"/>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+            <result column="langthYear" jdbcType="INTEGER" property="langthYear"/>
+            <result column="isFinish" jdbcType="INTEGER" property="isFinish"/>
+        </association>
     </resultMap>
 </mapper>

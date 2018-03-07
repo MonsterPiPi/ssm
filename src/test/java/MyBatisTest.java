@@ -59,7 +59,7 @@ public class MyBatisTest {
         stuuser.setTel("222");
         stuuser.setSpecialtyId("2");
 
-        stuuserDao.addStuuser(stuuser);
+        stuuserDao.add(stuuser);
         logger.info("----------");
 
     }
@@ -73,14 +73,14 @@ public class MyBatisTest {
     }
     @Test
     public void getAllCourse(){
-        List<Course> list=courseDao.getAllCourse();
+        List<Course> list=courseDao.findAll();
         for (Course course:list){
             logger.info("----------"+course.getId()) ;
         }
     }
     @Test
     public void getAllSpecialty(){
-        List<Specialty> list=specialtyDao.getAllSpecialty();
+        List<Specialty> list=specialtyDao.findAll();
         for (Specialty specialty:list){
             logger.info("----------"+specialty.getName());
         }
@@ -92,12 +92,12 @@ public class MyBatisTest {
         specialty.setEnterYear("none");
         specialty.setIsFinish(1);
         specialty.setLangthYear("4");
-        specialtyDao.addSpecialty(specialty);
+        specialtyDao.add(specialty);
     }
 
     @Test
     public void getCoursesByName(){
-        List<Course> list=courseDao.getCoursesByName("2");
+        List<Course> list=courseDao.findAllByName("2");
         for (Course course:list){
             logger.info("----------"+course.getId()) ;
         }
@@ -105,6 +105,6 @@ public class MyBatisTest {
 
     @Test
     public void deleteCourseById(){
-        courseDao.deleteCourseById("4");
+        courseDao.delete("4");
     }
 }

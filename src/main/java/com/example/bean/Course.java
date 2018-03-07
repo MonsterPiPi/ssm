@@ -48,6 +48,11 @@ public class Course {
      */
     private String specialtyId;
 
+    /**
+     * 多对一,多门课程，一个专业。
+     */
+    private Specialty specialty;
+
     public String getId() {
         return id;
     }
@@ -126,5 +131,13 @@ public class Course {
 
     public void setSpecialtyId(String specialtyId) {
         this.specialtyId = specialtyId;
+    }
+
+    public Specialty getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(Specialty specialty) {
+        this.specialty = specialty;
     }
 }

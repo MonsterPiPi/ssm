@@ -33,7 +33,7 @@ public interface IUserloginService {
     /**
      * 根据类型查询所有用户
      */
-    List<Userlogin> getAllByType(String type);
+    List<Userlogin> findAllByType(String type);
 
     /**
      * 根据id查询用户类型

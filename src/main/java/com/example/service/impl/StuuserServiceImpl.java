@@ -19,13 +19,30 @@ public class StuuserServiceImpl implements IStuuserService{
     @Resource
     private IStuuserDao stuuserDao;
 
-    @Override
-    public void addStuuser(Stuuser stuuser) {
-         stuuserDao.addStuuser(stuuser);
-    }
+
 
     @Override
     public List<String> findSameSpecialtyStuuser(String name) {
         return stuuserDao.findSameSpecialtyStuuser(name);
+    }
+
+    @Override
+    public List<Stuuser> findAll() {
+        return stuuserDao.findAll();
+    }
+
+    @Override
+    public void add(Stuuser stuuser) {
+        stuuserDao.add(stuuser);
+    }
+
+    @Override
+    public void delete(String id) {
+        stuuserDao.delete(id);
+    }
+
+    @Override
+    public void update(Stuuser stuuser) {
+        stuuserDao.update(stuuser);
     }
 }

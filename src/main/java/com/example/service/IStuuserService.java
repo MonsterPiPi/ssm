@@ -11,13 +11,30 @@ import java.util.List;
  */
 public interface IStuuserService {
 
-    /**
-     * 添加学生
-     */
-    void addStuuser(Stuuser stuuser);
+
 
     /**
      * 查询一个专业的所有学生
      */
     List<String> findSameSpecialtyStuuser(String name);
+
+    /**
+     * 查询所有
+     */
+    List<Stuuser> findAll();
+
+    /**
+     * 添加学生
+     */
+    void add(Stuuser stuuser);
+
+    /**
+     * 删除一位学生
+     */
+    void delete(String id);
+
+    /**
+     * 更新学生信息
+     */
+    void update(Stuuser stuuser);
 }

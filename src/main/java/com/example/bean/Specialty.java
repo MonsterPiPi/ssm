@@ -32,6 +32,8 @@ public class Specialty {
     //1对多，1个专业多个学生
     private List<Stuuser> stuuserList;
 
+    //1对多，1个专业多个课程
+    private List<Course> courseList;
 
     public String getId() {
         return id;
@@ -79,5 +81,13 @@ public class Specialty {
 
     public void setStuuserList(List<Stuuser> stuuserList) {
         this.stuuserList = stuuserList;
+    }
+
+    public List<Course> getCourseList() {
+        return courseList;
+    }
+
+    public void setCourseList(List<Course> courseList) {
+        this.courseList = courseList;
     }
 }

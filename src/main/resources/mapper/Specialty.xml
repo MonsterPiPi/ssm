@@ -24,5 +24,19 @@
             <result column="tel" jdbcType="VARCHAR" property="tel"/>
             <result column="addr" jdbcType="VARCHAR" property="addr"/>
         </collection>
+
+        <!-- 一对多的关系 -->
+        <!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
+        <collection property="courseList" ofType="com.example.bean.Course">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+            <result column="stuName" jdbcType="VARCHAR" property="stuName"/>
+            <result column="stuNo" jdbcType="VARCHAR" property="stuNo"/>
+            <result column="specialtyId" jdbcType="INTEGER" property="specialtyId"/>
+            <result column="stuSex" jdbcType="VARCHAR" property="stuSex"/>
+            <result column="birthday" jdbcType="VARCHAR" property="birthday"/>
+            <result column="homeAddr" jdbcType="VARCHAR" property="homeAddr"/>
+            <result column="tel" jdbcType="VARCHAR" property="tel"/>
+            <result column="addr" jdbcType="VARCHAR" property="addr"/>
+        </collection>
     </resultMap>
 </mapper>

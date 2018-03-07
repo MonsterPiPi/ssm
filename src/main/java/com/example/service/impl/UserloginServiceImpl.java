@@ -40,8 +40,8 @@ public class UserloginServiceImpl implements IUserloginService {
     }
 
     @Override
-    public List<Userlogin> getAllByType(String type) {
-        return userloginDao.getAllByType(type);
+    public List<Userlogin> findAllByType(String type) {
+        return userloginDao.findAllByType(type);
     }
 
     @Override

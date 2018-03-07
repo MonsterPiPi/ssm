@@ -20,23 +20,36 @@ public class CourseServiceImpl implements ICourseService {
     private ICourseDao courseDao;
 
     @Override
-    public List<Course> getAllCourse() {
-        return courseDao.getAllCourse();
+    public List<Course> findAll() {
+        return courseDao.findAll();
     }
 
     @Override
-    public List<Course> getCoursesByName(String name) {
-        return courseDao.getCoursesByName(name);
+    public List<Course> findAllByName(String name) {
+        return courseDao.findAllByName(name);
     }
 
     @Override
-    public boolean deleteCourseById(String id) {
+    public void delete(String id) {
         try{
-            courseDao.deleteCourseById(id);
-            return true;
+            courseDao.delete(id);
         }catch (Exception e){
             e.printStackTrace();
-            return false;
         }
+    }
+
+    @Override
+    public void add(Course course) {
+        courseDao.add(course);
+    }
+
+    @Override
+    public void update(Course course) {
+        courseDao.update(course);
+    }
+
+    @Override
+    public List<String> findSameSpecialtyCourses(String name) {
+        return courseDao.findSameSpecialtyCourses(name);
     }
 }

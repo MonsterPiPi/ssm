@@ -19,13 +19,29 @@ public class SpecialtyServiceImpl implements ISpecialtyService {
     @Resource
     private ISpecialtyDao specialtyDao;
 
+
     @Override
-    public List<Specialty> getAllSpecialty() {
-        return specialtyDao.getAllSpecialty();
+    public List<Specialty> findAll() {
+        return specialtyDao.findAll();
     }
 
     @Override
-    public void addSpecialty(Specialty specialty) {
-        specialtyDao.addSpecialty(specialty);
+    public List<Specialty> findAllByName(String name) {
+        return specialtyDao.findAllByName(name);
+    }
+
+    @Override
+    public void add(Specialty specialty) {
+        specialtyDao.add(specialty);
+    }
+
+    @Override
+    public void delete(String id) {
+        specialtyDao.delete(id);
+    }
+
+    @Override
+    public void update(Specialty specialty) {
+        specialtyDao.update(specialty);
     }
 }

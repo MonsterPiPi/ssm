@@ -109,10 +109,10 @@ public class UserloginController {
     @GetMapping("/type/{type}")
     @ResponseBody
     @ApiOperation(value = "根据type获取用户列表", notes = "根据type获取用户列表", httpMethod = "GET", response = Userlogin.class)
-    public Result getAllByType(@PathVariable("type") String type){
+    public Result findAllByType(@PathVariable("type") String type){
 
         if (type!=null){
-            List<Userlogin> list=userloginService.getAllByType(type);
+            List<Userlogin> list=userloginService.findAllByType(type);
             if (list==null&&list.size()==0){
                 return ResultUtil.error(1,"类型不存在");
             }else {
