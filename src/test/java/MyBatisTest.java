@@ -1,9 +1,7 @@
 import com.example.bean.Course;
-import com.example.bean.Position;
 import com.example.bean.Specialty;
 import com.example.bean.Stuuser;
 import com.example.dao.ICourseDao;
-import com.example.dao.IPositionDao;
 import com.example.dao.ISpecialtyDao;
 import com.example.dao.IStuuserDao;
 import org.junit.Test;
@@ -28,8 +26,6 @@ import java.util.List;
 public class MyBatisTest {
 
     private static Logger logger= LoggerFactory.getLogger(MyBatisTest.class);
-    @Autowired
-    private IPositionDao positionDao;
 
     @Autowired
     private IStuuserDao stuuserDao;
@@ -40,12 +36,7 @@ public class MyBatisTest {
     @Resource
     private ISpecialtyDao specialtyDao;
 
-    @Test
-    public void getPositionById() {
-        int id = 1;
-        Position position = positionDao.getPositionById(id);
-        System.out.println(position.getName());
-    }
+
     @Test
     public void addUser(){
         Stuuser stuuser=new Stuuser();
